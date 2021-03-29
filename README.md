@@ -2,15 +2,18 @@
 
 Link da API: https://documenter.getpostman.com/view/7549981/SVzuc2Q8
 
-Não esqueçam de editar o readme com: 
-- Integrantes do grupo
-- O que funciona
-- O que não funciona
-- **LINK DO SURGE**
+## Integrantes do grupinho:
+* **Angelo**
+* **Lucas**
+* **Marcelino**
+* **Nicolas**
+* **Paula**
+    
+## Protype de design
+(Figma prototype 1.0)[https://www.figma.com/proto/Rr8RfXxMFjqb5EnLaRg2aM/Future-Ninjas?node-id=0%3A3&scaling=min-zoom&page-id=0%3A1]
 
-### Autores:
-Ângelo O'Dwyer, 
-Lucas Bacelar, 
-Nicolas Alexandre, 
-Marcelino Sandroni, 
-Paula Vitória Lopes dos Santos.
+## Wireframe
+(Draw IO)[https://drive.google.com/file/d/1reaKckVRroUXdk0frW160e5SNBj8ONeH/view?usp=sharing]
+
+## Board
+[Trello SCRUM](https://trello.com/b/PqsVlUxd/future-ninjas)
