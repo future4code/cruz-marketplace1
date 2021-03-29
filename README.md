@@ -9,8 +9,8 @@ Não esqueçam de editar o readme com:
 - **LINK DO SURGE**
 
 ### Autores:
-Ângelo O'Dwyer
-Lucas Bacelar
-Nicolas Alexandre
-Marcelino Sandroni
-Paula Vitória Lopes dos Santos
+Ângelo O'Dwyer, 
+Lucas Bacelar, 
+Nicolas Alexandre, 
+Marcelino Sandroni, 
+Paula Vitória Lopes dos Santos.
