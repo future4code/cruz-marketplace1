@@ -7,3 +7,10 @@ Não esqueçam de editar o readme com:
 - O que funciona
 - O que não funciona
 - **LINK DO SURGE**
+
+### Autores:
+Ângelo O'Dwyer
+Lucas Bacelar
+Nicolas Alexandre
+Marcelino Sandroni
+Paula Vitória Lopes dos Santos
