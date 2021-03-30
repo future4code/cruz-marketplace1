@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { getAllJobs, takeJob, giveUpJob } from 'utils/api'
 import styled from 'styled-components'
+
 
 const PageWrapper = styled.div`
   display: flex;
@@ -46,6 +48,64 @@ const JobList = styled.section`
 `
 export class Professional extends Component {
   state = {
+    jobs: [],
+    isLoading: true
+  }
+  
+  componentDidMount () {
+    getAllJobs().then(r => {
+      this.setState({ jobs: [...r.jobs], isLoading: false })
+    })
+  }
+
+  render() {
+    return (
+      <PageWrapper>
+        <Header>
+          <p>Pagina Profissional</p>
+          <button onClick={() => this.props.changePage('home')}>
+            Home
+          </button>
+          <button>
+            Cadastro
+          </button>
+        </Header>
+        <ContentWraper>
+
+          <SubHeader>
+            <h2>Cadastre serviços e encontre as pessoas certas para você</h2>
+            <input type="text" onChange={this.handleSearchQuery} value={this.state.searchQuery}></input>
+          </SubHeader>
+
+          <Content>
+
+            <Filter> 
+              <input onChange={this.handleMinValue} value={this.state.minValue}></input>
+              <input onChange={this.handleMaxValue} value={this.state.maxValue}></input>
+            </Filter>
+
+            <JobList>
+               <ul>
+              {this.state.jobs.map(job => (
+                <li>
+                  {job.title}
+                  {job.description}
+                  {job.value}
+                  {job.taken}
+                  {job.paymentMethods}
+                </li>
+                )
+              )}
+              </ul>
+  
+            </JobList>
+
+          </Content>
+
+        </ContentWraper>
+      </PageWrapper>
+
+
     jobList: [
       {
         value: 120,
@@ -85,48 +145,15 @@ export class Professional extends Component {
 
 
   render() {
-    const jobArray = this.state.jobList.filter((job) => {
-      return (job.value >= this.state.minValue && job.value <= this.state.maxValue && job.title.toLowerCase().includes(this.state.searchQuery.toLowerCase()))
-    }).map((job) => {
       return <div>
         <p>{job.title}</p>
         <p>{job.description}</p>
         <p>{job.value}</p>
+
       </div>
     })
     return (
-      <PageWrapper>
-        <Header>
-          <p>Pagina Profissional</p>
-          <button onClick={() => this.props.changePage('home')}>
-            Home
-          </button>
-          <button>
-            Cadastro
-          </button>
-        </Header>
-        <ContentWraper>
 
-          <SubHeader>
-            <h2>Cadastre serviços e encontre as pessoas certas para você</h2>
-            <input type="text" onChange={this.handleSearchQuery} value={this.state.searchQuery}></input>
-          </SubHeader>
-
-          <Content>
-
-            <Filter> 
-              <input onChange={this.handleMinValue} value={this.state.minValue}></input>
-              <input onChange={this.handleMaxValue} value={this.state.maxValue}></input>
-            </Filter>
-
-            <JobList>
-              {jobArray}
-            </JobList>
-
-          </Content>
-
-        </ContentWraper>
-      </PageWrapper>
     )
   }
 }
