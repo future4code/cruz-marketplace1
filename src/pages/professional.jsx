@@ -49,7 +49,7 @@ export class Professional extends Component {
     return (
       <PageWrapper>
         <Header>
-          <p>Pagina Professional</p>
+          <p>Pagina Profissional</p>
           <button onClick={() => this.props.changePage('home')}>
             Home
           </button>
