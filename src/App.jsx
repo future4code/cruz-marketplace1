@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Home, User, Professional, CreateJob, NotFound } from 'pages'
 
+
 class App extends Component {
   state = { page: 'home'}
   
@@ -33,6 +34,7 @@ class App extends Component {
         </select>
 
         <SelectedPage changePage={this.changePage} />
+       
       </div>
     )
     }
