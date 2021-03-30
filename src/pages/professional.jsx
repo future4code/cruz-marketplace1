@@ -24,7 +24,7 @@ const SubHeader = styled.div`
 
 const Content = styled.section`
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 500px 1fr;
   background: yellow;
   grid-column-gap: 70px;
 `
@@ -39,61 +39,13 @@ const JobList = styled.section`
   display: grid;
 
   grid-row-gap: 30px;
-  grid-auto-rows: 220px;
+  grid-auto-rows: 300px;
   & > div {
     background: red;
   }
 `
 export class Professional extends Component {
-  state = {
-    jobList: [
-      {
-        value: 120,
-        title: 'Job',
-        description: "Esse é um job muito legal!",
-        paymentMethods: [
-          "card"
-        ],
-        dueDate: 1571972400
-      },
-      {
-        value: 20,
-        title: 'Job',
-        description: "Esse é um job muito legal!",
-        paymentMethods: [
-          "card"
-        ],
-        dueDate: 1571972400
-      }
-    ],
-    searchQuery: '',
-    minValue: 100,
-    maxValue: 200,
-  }
-
-  handleMinValue = (event) => {
-    this.setState({ minValue: event.target.value })
-  }
-
-  handleMaxValue = (event) => {
-    this.setState({ maxValue: event.target.value })
-  }
-
-  handleSearchQuery = (event) => {
-    this.setState({ searchQuery: event.target.value })
-  }
-
-
   render() {
-    const jobArray = this.state.jobList.filter((job) => {
-      return (job.value >= this.state.minValue && job.value <= this.state.maxValue && job.title.toLowerCase().includes(this.state.searchQuery.toLowerCase()))
-    }).map((job) => {
-      return <div>
-        <p>{job.title}</p>
-        <p>{job.description}</p>
-        <p>{job.value}</p>
-      </div>
-    })
     return (
       <PageWrapper>
         <Header>
@@ -105,22 +57,22 @@ export class Professional extends Component {
             Cadastro
           </button>
         </Header>
+
         <ContentWraper>
 
           <SubHeader>
-            <h2>Cadastre serviços e encontre as pessoas certas para você</h2>
-            <input type="text" onChange={this.handleSearchQuery} value={this.state.searchQuery}></input>
+
           </SubHeader>
 
           <Content>
 
-            <Filter> 
-              <input onChange={this.handleMinValue} value={this.state.minValue}></input>
-              <input onChange={this.handleMaxValue} value={this.state.maxValue}></input>
+            <Filter>
             </Filter>
 
             <JobList>
-              {jobArray}
+              <div></div>
+              <div></div>
+              <div></div>
             </JobList>
 
           </Content>
