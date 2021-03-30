@@ -99,7 +99,8 @@ export class Professional extends Component {
 
             <JobList>
               <ul>
-              {this.state.jobs.map(job => (
+              {this.state.jobs.map(job =>
+              (
                 <li>
                   {job.title}
                   {job.description}
@@ -107,7 +108,7 @@ export class Professional extends Component {
                   {job.taken}
                   {job.paymentMethods}
                 </li>
-                )
+              )
               )}
               </ul>
   
