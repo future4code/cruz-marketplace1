@@ -57,6 +57,19 @@ export class Professional extends Component {
       this.setState({ jobs: [...r.jobs], isLoading: false })
     })
   }
+  
+  
+  handleMinValue = (event) => {
+    this.setState({ minValue: event.target.value })
+  }
+
+  handleMaxValue = (event) => {
+    this.setState({ maxValue: event.target.value })
+  }
+
+  handleSearchQuery = (event) => {
+    this.setState({ searchQuery: event.target.value })
+  }
 
   render() {
     return (
@@ -85,8 +98,9 @@ export class Professional extends Component {
             </Filter>
 
             <JobList>
-               <ul>
-              {this.state.jobs.map(job => (
+              <ul>
+              {this.state.jobs.map(job =>
+              (
                 <li>
                   {job.title}
                   {job.description}
@@ -94,7 +108,7 @@ export class Professional extends Component {
                   {job.taken}
                   {job.paymentMethods}
                 </li>
-                )
+              )
               )}
               </ul>
   
@@ -104,56 +118,6 @@ export class Professional extends Component {
 
         </ContentWraper>
       </PageWrapper>
-
-
-    jobList: [
-      {
-        value: 120,
-        title: 'Job',
-        description: "Esse é um job muito legal!",
-        paymentMethods: [
-          "card"
-        ],
-        dueDate: 1571972400
-      },
-      {
-        value: 20,
-        title: 'Job',
-        description: "Esse é um job muito legal!",
-        paymentMethods: [
-          "card"
-        ],
-        dueDate: 1571972400
-      }
-    ],
-    searchQuery: '',
-    minValue: 100,
-    maxValue: 200,
-  }
-
-  handleMinValue = (event) => {
-    this.setState({ minValue: event.target.value })
-  }
-
-  handleMaxValue = (event) => {
-    this.setState({ maxValue: event.target.value })
-  }
-
-  handleSearchQuery = (event) => {
-    this.setState({ searchQuery: event.target.value })
-  }
-
-
-  render() {
-      return <div>
-        <p>{job.title}</p>
-        <p>{job.description}</p>
-        <p>{job.value}</p>
-
-      </div>
-    })
-    return (
-
     )
   }
 }
