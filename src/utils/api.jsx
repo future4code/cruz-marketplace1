@@ -17,12 +17,12 @@ const base = ({method = 'get', url = '', params = '', data = ''} = {}) => {
   }
 }
 
-const getJob = id => base({url: id})
+const getJob = id => base({url: id})()
 const getAllJobs = base()
-const createJob = data => base({method: 'post', data})
-const deleteJob = id => base({method: 'delete', url: id})
-const takeJob = id => base({method: 'put', url: `${id}/take`})
-const giveUpJob = id => base({method: 'put', url: `${id}/giveup`})
+const createJob = data => base({method: 'post', data})()
+const deleteJob = id => base({method: 'delete', url: id})()
+const takeJob = id => base({method: 'put', url: `${id}/take`})()
+const giveUpJob = id => base({method: 'put', url: `${id}/giveup`})()
 
 export {getJob, getAllJobs, createJob, deleteJob, takeJob, giveUpJob}
 
