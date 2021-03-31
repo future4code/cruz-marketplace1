@@ -15,6 +15,7 @@ const base = ({method = 'get', url = '', params = '', data = ''} = {}) => {
       console.error(e)
     }
   }
+  
 }
 
 const getJob = id => base({url: id})()
