@@ -25,7 +25,6 @@ class App extends Component {
       case 'create-job': return RegistrationPage
       default: return NotFound
     }
-
   }
   
 

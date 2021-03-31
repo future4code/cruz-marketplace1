@@ -2,13 +2,14 @@ import React, { Component } from "react"
 import { getAllJobs, takeJob, giveUpJob } from "utils/api"
 import CardProf from "components/CardProf"
 import logo from 'images/LogoComNome.svg'
+import Footer from 'components/layout/footer'
 
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import TextField from "@material-ui/core/TextField"
 import InputAdornment from "@material-ui/core/InputAdornment"
-import { Search } from "@material-ui/icons"
+import { FilterSharp, Search } from "@material-ui/icons"
 import { Button, FormGroup, Paper } from '@material-ui/core'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -64,6 +65,7 @@ const styles = theme => ({
 class Professional extends Component {
   state = {
     jobs: [],
+    filters: [],
     isLoading: true,
     input: {nome: ''}
   }
@@ -72,6 +74,12 @@ class Professional extends Component {
     getAllJobs().then(r => {
       this.setState({ jobs: [...r.jobs], isLoading: false })
     })
+  }
+
+  controlInput = e => {
+    let { name, value } = e.target
+    value = name.includes('value') ? Number(value) : String(value)
+    this.setState({ filters: { ...this.state.filters, [name]: value } })
   }
 
   onTake = job => {
@@ -142,13 +150,14 @@ class Professional extends Component {
             <FormLabel component="legend" color='primary'>
               <Typography color='primary'>Ordenar por:</Typography>
             </FormLabel>
-            <RadioGroup name="order" value={'Valor'} onChange={''}>
+            <RadioGroup name="order" value={this.state.filters.order}
+              onChange={this.controlInput}>
               <FormControlLabel
                 value="title"
                 control={<Radio />}
                 label="Título" />
               <FormControlLabel
-                value="Valor"
+                value="value"
                 control={<Radio />}
                 label="Valor" />
               <FormControlLabel
@@ -168,17 +177,19 @@ class Professional extends Component {
               <Typography color='primary'>Filtrar Valores</Typography>
             </FormLabel>
             <TextField
-              id=""
+              type='number'
+              name='valueMin'
               label="Valor Mínimo"
-              // value={}
-              // onChange={}
+              value={this.state.filters.valueMin}
+              onChange={this.controlInput}
               className={classes.inputValor}
             />
             <TextField
-              id=""
+              type='number'
+              name='valueMax'
               label="Valor Máximo"
-              // value={}
-              // onChange={}
+              value={this.state.filters.valueMax}
+              onChange={this.controlInput}
               className={classes.inputValor}
             />
             <Button variant="outlined" color="primary" >
@@ -219,6 +230,7 @@ class Professional extends Component {
             </Grid>
           ))}
         </Grid>
+        <Footer />
       </Grid>
     )
   }
