@@ -45,40 +45,56 @@ const Details = styled.div`
 
 export default class CardProf extends React.Component {
   state = {
-    showDetails: true,
-    arrow: "down",
+    showDetails: false,
+    arrow: "up",
   };
 
   detailsHandle = () => {
-    if(this.state.showDetails){
-      this.setState({arrow: 'up'})
-    }else{
-      this.setState({arrow: 'down'})
+    if (this.state.showDetails) {
+      this.setState({ arrow: "up" });
+    } else {
+      this.setState({ arrow: "down" });
     }
     this.setState({ showDetails: !this.state.showDetails });
   };
 
   render() {
-
     const arrow = () => {
-      if(this.state.arrow === 'up'){
-        return <ArrowUpwardIcon />
-      }else{
-        return <ArrowDownwardIcon />
+      if (this.state.arrow === "down") {
+        return <ArrowUpwardIcon />;
+      } else {
+        return <ArrowDownwardIcon />;
       }
-    }
+    };
 
     const details = () => {
       if (this.state.showDetails) {
         return (
           <Details>
             <h4>Detalhes</h4>
-            <p>{this.props.details ? this.props.details : 'texto de exemplo'}</p>
+            <p>
+              {this.props.description
+                ? this.props.description
+                : "texto de exemplo"}
+            </p>
             <h4>Data</h4>
-            <p>{this.props.data ? this.props.data : '22/07/02'}</p>
+            <p>{this.props.data ? this.props.data : "22/07/02"}</p>
+            <h4>Métodos de pagamento</h4>
+            <div>
+            {this.props.paymentMethods
+                ? this.props.paymentMethods.map((i) => {
+                  return <h5>{i}</h5>;
+                })
+                : <h5>preencha a props paymentMethods</h5>}
+            </div>
 
-            <Button onClick={this.props.onTake} className="teste" variant="contained" color="primary">
-              {this.props.taked ? 'Descandidatar' : 'Me candidatar'}
+            <Button
+              onClick={this.props.onTake}
+              className="teste"
+              variant="contained"
+              color="primary"
+            >
+              {this.props.taken ? "Descandidatar" : "Me candidatar"}
             </Button>
           </Details>
         );
@@ -91,8 +107,8 @@ export default class CardProf extends React.Component {
           {arrow()}
         </DetailsButton>
         <Title>
-          <h3>{this.props.title ? this.props.title : 'Titulo de exemplo'}</h3>
-          <Value>R${this.props.title ? this.props.title : '200'}</Value>
+          <h3>{this.props.title ? this.props.title : "Titulo de exemplo"}</h3>
+          <Value>R${this.props.value ? this.props.value : "200"}</Value>
         </Title>
         {details()}
       </MainContainer>

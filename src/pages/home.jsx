@@ -1,4 +1,5 @@
-//import { styled } from '@material-ui/core'
+import { styled } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import React, { Component } from 'react'
 import HomeImage from "../images/homeImage.jpg"
 import styled from "styled-components"

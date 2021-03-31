@@ -1,123 +1,117 @@
-import React, { Component } from 'react'
-import { getAllJobs, takeJob, giveUpJob } from 'utils/api'
-import styled from 'styled-components'
+import React, { Component } from "react"
+import { getAllJobs, takeJob, giveUpJob } from "utils/api"
+import CardProf from "components/CardProf"
+import logo from 'components/img/logo.png'
 
+import { withStyles } from "@material-ui/core/styles"
+import Grid from "@material-ui/core/Grid"
+import Typography from "@material-ui/core/Typography"
+import TextField from "@material-ui/core/TextField"
+import InputAdornment from "@material-ui/core/InputAdornment"
+import { Search } from "@material-ui/icons"
+import { Button } from '@material-ui/core'
 
-const PageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: purple;
-`
+const styles = theme => ({
+  header: {
+    height: '100px',
+    border: '1px solid #000',
+  },
+  logo: {
+    width: '100px',
+    height: '100px',
+  },
+  search: {},
+})
 
-const Header = styled.div`
-  height: 100px;
-  background: red;
-`
-
-const ContentWraper = styled.div`
-  padding: 0 140px;
-`
-
-const SubHeader = styled.div`
-  height: 100px;
-  background: green;
-`
-
-const Content = styled.section`
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  background: yellow;
-  grid-column-gap: 70px;
-`
-
-const Filter = styled.section`
-  background: blue;
-  height: 300px;
-`
-
-const JobList = styled.section`
-  background: brown;
-  display: grid;
-
-  grid-row-gap: 30px;
-  grid-auto-rows: 220px;
-  & > div {
-    background: red;
-  }
-`
-export class Professional extends Component {
+class Professional extends Component {
   state = {
     jobs: [],
-    isLoading: true
+    isLoading: true,
   }
-  
-  componentDidMount () {
+
+  componentDidMount() {
     getAllJobs().then(r => {
       this.setState({ jobs: [...r.jobs], isLoading: false })
     })
   }
-  
-  
-  handleMinValue = (event) => {
-    this.setState({ minValue: event.target.value })
+
+  onTake = job => {
+    const newJobs = [...this.state.jobs]
+
+    if (job.taken) {
+      giveUpJob(job.id).then(r => {
+        newJobs.forEach(
+          item => (item.taken = item.id === job.id ? false : item.taken)
+        )
+      })
+    } else {
+      takeJob(job.id).then(r => {
+        newJobs.forEach(
+          item => (item.taken = item.id === job.id ? true : item.taken)
+        )
+      })
+    }
+    this.setState({ jobs: newJobs })
   }
 
-  handleMaxValue = (event) => {
-    this.setState({ maxValue: event.target.value })
-  }
+  // handleMinValue = event => {
+  //   this.setState({ minValue: event.target.value })
+  // }
 
-  handleSearchQuery = (event) => {
-    this.setState({ searchQuery: event.target.value })
-  }
+  // handleMaxValue = event => {
+  //   this.setState({ maxValue: event.target.value })
+  // }
+
+  // handleSearchQuery = event => {
+  //   this.setState({ searchQuery: event.target.value })
+  // }
 
   render() {
+    const { classes } = this.props
+
     return (
-      <PageWrapper>
-        <Header>
-          <p>Pagina Profissional</p>
-          <button onClick={() => this.props.changePage('home')}>
-            Home
-          </button>
-          <button>
-            Cadastro
-          </button>
-        </Header>
-        <ContentWraper>
+      <Grid container spacing={8}>
+        
+        <Grid
+          container
+          item
+          justify='space-between'
+          alignItems='center'
+          spacing={0}
+        >
+          <Grid item xs={4}>
+            <img className={classes.logo} src={logo} alt="Future Ninjas Logo"/>
+          </Grid>
 
-          <SubHeader>
-            <h2>Cadastre serviços e encontre as pessoas certas para você</h2>
-            <input type="text" onChange={this.handleSearchQuery} value={this.state.searchQuery}></input>
-          </SubHeader>
+          <Grid item xs={4}>
+            <Typography variant="h2" color="primary">Professional</Typography>
+          </Grid>
 
-          <Content>
-
-            <Filter> 
-              <input onChange={this.handleMinValue} value={this.state.minValue}></input>
-              <input onChange={this.handleMaxValue} value={this.state.maxValue}></input>
-            </Filter>
-
-            <JobList>
-              <ul>
-              {this.state.jobs.map(job =>
-              (
-                <li>
-                  {job.title}
-                  {job.description}
-                  {job.value}
-                  {job.taken}
-                  {job.paymentMethods}
-                </li>
-              )
-              )}
-              </ul>
-  
-            </JobList>
-
-          </Content>
-
-        </ContentWraper>
-      </PageWrapper>
+          <Grid container item xs={4} justify='flex-end' alignItems='center'>
+            <Button variant="contained" color="secondary" href="/">
+              Home
+            </Button>
+          </Grid>
+        </Grid>
+          
+        <Grid
+          item
+          container
+          xs={12}
+          spacing={6}
+          justify='space-evenly'
+          alignItems='flex-start'
+        >
+          {this.state.jobs.map(job => (
+            <Grid container item xs={3} key={job.id}>
+              <CardProf {...job} onTake={() => this.onTake(job)} />
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
     )
   }
 }
+
+// export withStyles(styles)(Professional)
+export default withStyles(styles)(Professional)
