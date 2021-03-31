@@ -1,7 +1,7 @@
 //import { styled } from '@material-ui/core'
 import { Grid } from '@material-ui/core'
 import React, { Component } from 'react'
-import HomeImage from "../images/homeImage.jpg"
+import HomeImage from "../images/homeImage.png"
 import styled from "styled-components"
 import Footer from "../components/layout/footer"
 import Header from "../components/layout/header"
