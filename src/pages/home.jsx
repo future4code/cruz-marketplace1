@@ -50,7 +50,7 @@ div > input{
 `
 export class Home extends Component {
   render() {
-    return (
+    return (     
       <div>
         <Header
        page={this.props.changePage}
