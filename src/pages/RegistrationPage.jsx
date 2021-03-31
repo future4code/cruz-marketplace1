@@ -15,7 +15,7 @@ const defaultValues = {
     dueDate: "",
   }
 
-export default class RegistrationPage extends React.Component {
+export class RegistrationPage extends React.Component {
   state = defaultValues
 
   alertJob = {
