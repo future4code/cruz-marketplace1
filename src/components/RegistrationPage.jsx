@@ -3,9 +3,20 @@ import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
 import LogoName from '../images/LogoComNome.svg'
 import LogoNinja from '../images/LogoNinja.svg'
+import { createJob } from 'utils/api'
 
 
 export default class RegistrationPage extends React.Component {
+  state = {
+    inputs: {
+      title: '',
+      value: ''
+    }
+  }
+
+  criarJob = () => {
+    createJob(this.state.input)
+  }
 
     render () {
 

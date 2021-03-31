@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { getAllJobs, takeJob, giveUpJob } from "utils/api"
 import CardProf from "components/CardProf"
-import logo from 'components/img/logo.png'
+import logo from 'images/LogoComNome.svg'
 
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
@@ -9,24 +9,63 @@ import Typography from "@material-ui/core/Typography"
 import TextField from "@material-ui/core/TextField"
 import InputAdornment from "@material-ui/core/InputAdornment"
 import { Search } from "@material-ui/icons"
-import { Button } from '@material-ui/core'
+import { Button, FormGroup, Paper } from '@material-ui/core'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const styles = theme => ({
   header: {
-    height: '100px',
-    border: '1px solid #000',
+    marginTop: '2%',
   },
   logo: {
-    width: '100px',
-    height: '100px',
+    width: '170px',
+    // height: '100px',
   },
-  search: {},
+  title: {
+
+  },
+  button: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+
+  },
+  filter: {
+    width: '80%',
+    flexBasis: '80%',
+    margin: 'auto',
+    padding: 0,
+    backgroundColor: theme.palette.background.paper,
+
+  },
+  paper: {
+    flexGrow: 1,
+    height: '30vh',
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    fontSize: '2rem',
+    '& *': {color: 'white', fontSize: '3rem'}
+
+  },
+  inputValor: {
+    textAlign: 'center'
+  },
+  search: {
+    fontSize: '3rem',
+  }
 })
 
 class Professional extends Component {
   state = {
     jobs: [],
     isLoading: true,
+    input: {nome: ''}
   }
 
   componentDidMount() {
@@ -71,14 +110,14 @@ class Professional extends Component {
 
     return (
       <Grid container spacing={8}>
+       {/* <Snackbar open={false} autoHideDuration={6000} onClose={() => {}}>
+          <MuiAlert onClose={() => { }} severity="success">
+            This is a success message!
+          </MuiAlert>
+        </Snackbar>  */}
         
-        <Grid
-          container
-          item
-          justify='space-between'
-          alignItems='center'
-          spacing={0}
-        >
+        <Grid className={classes.header} container item
+          justify='space-between' alignItems='center' spacing={0} >
           <Grid item xs={4}>
             <img className={classes.logo} src={logo} alt="Future Ninjas Logo"/>
           </Grid>
@@ -88,10 +127,82 @@ class Professional extends Component {
           </Grid>
 
           <Grid container item xs={4} justify='flex-end' alignItems='center'>
-            <Button variant="contained" color="secondary" href="/">
+            <Button variant="contained" color="secondary"
+              className={classes.button}
+              onClick={() => this.props.changePage('home')}>
               Home
             </Button>
           </Grid>
+        </Grid>
+
+        <Grid item container spacing={1} xs={12} className={classes.filter} justify='space-evenly'>
+
+          {/* <FormControl component="fieldset" error={'ma oi'} className={classes.formControl}> */}
+          <Grid container item xs={6} direction='column' justify='center' alignItems='center'>
+            <FormLabel component="legend" color='primary'>
+              <Typography color='primary'>Ordenar por:</Typography>
+            </FormLabel>
+            <RadioGroup name="order" value={'Valor'} onChange={''}>
+              <FormControlLabel
+                value="title"
+                control={<Radio />}
+                label="Título" />
+              <FormControlLabel
+                value="Valor"
+                control={<Radio />}
+                label="Valor" />
+              <FormControlLabel
+                value='time'
+                control={<Radio />}
+                label='Prazo' />
+            </RadioGroup>
+            {/* <FormHelperText>{helperText}</FormHelperText> */}
+            <Button variant="outlined" color="primary" >
+                Ordenar
+            </Button>
+            </Grid>
+
+
+            <Grid container item xs={6} justify='center' alignItems='center' direction='column'>
+            <FormLabel component="legend" color='primary'>
+              <Typography color='primary'>Filtrar Valores</Typography>
+            </FormLabel>
+            <TextField
+              id=""
+              label="Valor Mínimo"
+              // value={}
+              // onChange={}
+              className={classes.inputValor}
+            />
+            <TextField
+              id=""
+              label="Valor Máximo"
+              // value={}
+              // onChange={}
+              className={classes.inputValor}
+            />
+            <Button variant="outlined" color="primary" >
+                Ordenar
+            </Button>
+            </Grid>
+
+
+          <Grid container item xs={6} justify='center'>
+            <TextField
+              fullWidth
+              type='search'
+              label='Pesquisar...'
+              InputProps={{
+                endAdornment: <Search />
+              }}
+              className={classes.search}
+            />
+          </Grid>
+          {/* </FormControl> */}
+
+          {/* <Paper className={classes.paper}>
+          </Paper> */}
+          
         </Grid>
           
         <Grid
@@ -103,7 +214,7 @@ class Professional extends Component {
           alignItems='flex-start'
         >
           {this.state.jobs.map(job => (
-            <Grid container item xs={3} key={job.id}>
+            <Grid container item xs={4} key={job.id}>
               <CardProf {...job} onTake={() => this.onTake(job)} />
             </Grid>
           ))}

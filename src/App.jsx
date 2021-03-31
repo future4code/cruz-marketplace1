@@ -11,9 +11,10 @@ import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
 import Footer from "./components/layout/footer"
+import '@fontsource/roboto'
 
 class App extends Component {
-  state = { page: 'user'}
+  state = { page: 'professional'}
   
   changePage = page => this.setState({ page })
   
@@ -29,7 +30,6 @@ class App extends Component {
     }
   }
   
-
   render() {
     console.log(`Theme Config`, theme)
     const SelectedPage = this.renderPage()
@@ -38,16 +38,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
-          {/* <select name="page" id="page"
-            onChange={(e) => this.setState({ page: e.target.value })}
-          >
-            <option value="home">Home</option>
-            <option value="user">User</option>
-            <option value="professional">Professional</option>
-            <option value="create-job">CreateJob</option>
-            <option value="notfound">NotFound</option>
-          </select> */}
-        <SelectedPage changePage={this.changePage} />
+          <SelectedPage changePage={this.changePage} />
         </Container>
       </ThemeProvider>
     )
