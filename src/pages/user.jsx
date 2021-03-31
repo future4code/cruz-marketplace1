@@ -207,7 +207,7 @@ export class User extends Component {
         <Header>
           <img src={logo} alt="logo" />
           <SectionTitle>Contratante</SectionTitle>
-          <Button variant="contained" color="secondary" size="large" href="/">
+          <Button onClick={() => this.props.changePage('create-job')} variant="contained" color="secondary" size="large">
             Cadastrar
           </Button>
         </Header>

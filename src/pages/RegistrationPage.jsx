@@ -6,6 +6,7 @@ import LogoNinja from "../images/LogoNinja.svg";
 import { createJob } from "../utils/api";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import Footer from "components/layout/footer";
 
 const defaultValues = {
     title: "",
@@ -78,7 +79,7 @@ export class RegistrationPage extends React.Component {
 
         <h1>Cadastre um serviço</h1>
 
-        <form action="post">
+        <form>
           <Span>
             <input
               value={this.state.title}
@@ -149,7 +150,7 @@ export class RegistrationPage extends React.Component {
 
         <LogoNinjaImg src={LogoNinja} alt="Logo Ninja" />
 
-        {/* footer */}
+        {/* <Footer/> */}
       </Container>
     );
   }
@@ -158,7 +159,7 @@ export class RegistrationPage extends React.Component {
 const Container = styled.div`
   max-width: 1366px;
   height: 100vh;
-  background-color: #f4f4f4;
+  /* background-color: #f4f4f4; */
   display: flex;
   flex-direction: column;
   align-items: center;
