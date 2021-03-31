@@ -4,6 +4,8 @@ import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
 
+class App extends Component {
+  state = { page: 'home'}
 
 class App extends Component {
   state = { page: 'home'}
@@ -20,7 +22,7 @@ class App extends Component {
       case 'home': return Home
       case 'user': return User
       case 'professional': return Professional
-      case 'create-job': return CreateJob
+      case 'create-job': return RegistrationPage
       default: return NotFound
     }
 
