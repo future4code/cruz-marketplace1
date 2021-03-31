@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { Home, User, Professional, RegistrationPage, NotFound } from 'pages'
+import theme from 'styles/theme'
+import { ThemeProvider } from '@material-ui/styles'
+import * as api from 'utils/api'
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import * as api from 'utils/api'
+import '@fontsource/roboto'
 
 class App extends Component {
   state = { page: 'home'}
@@ -27,13 +30,16 @@ class App extends Component {
   
 
 	render () {
+    console.log(`Theme Config`, theme)
     const SelectedPage = this.renderPage()
 
     return (
-      <Container>
+      <ThemeProvider>
         <CssBaseline />
-        <SelectedPage changePage={this.changePage} />
-      </Container>
+        <Container>
+          <SelectedPage changePage={this.changePage} />
+        </Container>
+      </ThemeProvider>
     )
     }
   }
