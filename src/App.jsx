@@ -3,6 +3,7 @@ import { Home, User, Professional, CreateJob, NotFound } from 'pages'
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
+import Footer from "./components/layout/footer"
 
 
 class App extends Component {
@@ -44,6 +45,7 @@ class App extends Component {
         </select>
 
         <SelectedPage changePage={this.changePage} />
+        
       </Container>
     )
     }
