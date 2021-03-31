@@ -45,8 +45,8 @@ const Details = styled.div`
 
 export default class CardProf extends React.Component {
   state = {
-    showDetails: true,
-    arrow: "down",
+    showDetails: false,
+    arrow: "up",
   };
 
   detailsHandle = () => {
@@ -59,9 +59,8 @@ export default class CardProf extends React.Component {
   };
 
   render() {
-
     const arrow = () => {
-      if(this.state.arrow === 'up'){
+      if(this.state.arrow === 'down'){
         return <ArrowUpwardIcon />
       }else{
         return <ArrowDownwardIcon />
@@ -73,12 +72,12 @@ export default class CardProf extends React.Component {
         return (
           <Details>
             <h4>Detalhes</h4>
-            <p>{this.props.details ? this.props.details : 'texto de exemplo'}</p>
+            <p>{this.props.description ? this.props.description : 'texto de exemplo'}</p>
             <h4>Data</h4>
             <p>{this.props.data ? this.props.data : '22/07/02'}</p>
 
             <Button onClick={this.props.onTake} className="teste" variant="contained" color="primary">
-              {this.props.taked ? 'Descandidatar' : 'Me candidatar'}
+              {this.props.taken ? 'Descandidatar' : 'Me candidatar'}
             </Button>
           </Details>
         );
@@ -92,9 +91,9 @@ export default class CardProf extends React.Component {
         </DetailsButton>
         <Title>
           <h3>{this.props.title ? this.props.title : 'Titulo de exemplo'}</h3>
-          <Value>R${this.props.title ? this.props.title : '200'}</Value>
+          <Value>R${this.props.value ? this.props.value : '200'}</Value>
         </Title>
-        {details()}
+          {details()}
       </MainContainer>
     );
   }
