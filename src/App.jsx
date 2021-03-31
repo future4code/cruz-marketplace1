@@ -12,7 +12,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
 import Footer from "./components/layout/footer"
 import RegistrationPage from 'components/RegistrationPage'
-
+import Home from "./pages/home";
 
 class App extends Component {
   state = { page: 'home'}
@@ -30,8 +30,6 @@ class App extends Component {
       default: return NotFound
     }
   }
-  
-
   render() {
     console.log(`Theme Config`, theme)
     const SelectedPage = this.renderPage()
@@ -40,10 +38,13 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
+					<CardProf paymentMethods={['teste1', 'teste2', 'teste3']}></CardProf>
+
         <SelectedPage changePage={this.changePage} />
         </Container>
       </ThemeProvider>
     )
+    
     }
   }
 
