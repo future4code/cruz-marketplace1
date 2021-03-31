@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
 import Footer from "./components/layout/footer"
+//import Home from "./pages/home";
 
 
 class App extends Component {
@@ -29,25 +30,11 @@ class App extends Component {
   
 
 	render () {
-    const SelectedPage = this.renderPage()
-
+    
     return (
-      <Container>
-        <CssBaseline />
-        <select name="page" id="page"
-          onChange={(e) => this.setState({ page: e.target.value })}
-        >
-          <option value="home">Home</option>
-          <option value="user">User</option>
-          <option value="professional">Professional</option>
-          <option value="create-job">CreateJob</option>
-          <option value="notfound">NotFound</option>
-        </select>
-
-        <SelectedPage changePage={this.changePage} />
-        
-      </Container>
+    <Home/>
     )
+    
     }
   }
 
