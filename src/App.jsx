@@ -11,7 +11,7 @@ import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
 import Footer from "./components/layout/footer"
-import CardUser from 'components/CardUser'
+import Home from "./pages/home";
 
 
 class App extends Component {
@@ -30,8 +30,6 @@ class App extends Component {
       default: return NotFound
     }
   }
-  
-
   render() {
     console.log(`Theme Config`, theme)
     const SelectedPage = this.renderPage()
@@ -40,7 +38,6 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
-					<CardUser title={'Pintar parede'} description={'Quero que pinte todos os comodos da minha casa'} onDelete={()=>alert('deletando...')} paymentMethods={['Cash', 'Cartão']}></CardUser>
           {/* <select name="page" id="page"
             onChange={(e) => this.setState({ page: e.target.value })}
           >
@@ -54,6 +51,7 @@ class App extends Component {
         </Container>
       </ThemeProvider>
     )
+    
     }
   }
 
