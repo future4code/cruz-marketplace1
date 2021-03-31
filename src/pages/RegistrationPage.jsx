@@ -150,7 +150,7 @@ export class RegistrationPage extends React.Component {
 
         <LogoNinjaImg src={LogoNinja} alt="Logo Ninja" />
 
-        {/* <Footer/> */}
+        <Footer/>
       </Container>
     );
   }
@@ -257,8 +257,8 @@ const Container = styled.div`
 `;
 const LogoNinjaImg = styled.img`
   position: absolute;
-  bottom: -50px;
-  right: -130px;
+  bottom: 0px;
+  right: 0px;
   height: 600px;
   width: 500px;
   opacity: 0.2;

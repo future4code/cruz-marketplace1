@@ -14,6 +14,7 @@ color:white;
 padding:15px;
 flex-direction:column;
 align-self:flex-end;
+z-index: 1;
 `
 
 
