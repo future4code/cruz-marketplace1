@@ -6,9 +6,6 @@ import * as api from 'utils/api'
 
 class App extends Component {
   state = { page: 'home'}
-
-class App extends Component {
-  state = { page: 'home'}
   
   componentDidMount () {
     api.getAllJobs()
