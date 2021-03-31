@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Home, User, Professional, CreateJob, NotFound } from 'pages'
+import { Home, User, Professional, RegistrationPage, NotFound } from 'pages'
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
