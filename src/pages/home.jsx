@@ -1,4 +1,4 @@
-import { styled } from '@material-ui/core'
+//import { styled } from '@material-ui/core'
 import { Grid } from '@material-ui/core'
 import React, { Component } from 'react'
 import HomeImage from "../images/homeImage.jpg"
@@ -6,6 +6,8 @@ import styled from "styled-components"
 import Footer from "../components/layout/footer"
 import Header from "../components/layout/header"
 import SearchIcon from '@material-ui/icons/Search';
+
+
 
 const HomeContainer = styled.div`
 display:flex;
@@ -48,9 +50,14 @@ div > input{
 `
 export class Home extends Component {
   render() {
-    return (
+    return (     
       <div>
-        <Header/>
+        <Header
+       page={this.props.changePage}
+    
+        
+        
+        />
           <HomeContainer>
             <ChamadaHome>
               <p> Milhares de <span>profissionais</span><br/>prontos 
