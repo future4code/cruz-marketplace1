@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 import { Home, User, Professional, CreateJob, NotFound } from 'pages'
+import Container from '@material-ui/core/Container'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import * as api from 'utils/api'
 
 class App extends Component {
   state = { page: 'home'}
+  
+  componentDidMount () {
+    api.getAllJobs()
+    .then(r => console.log(r))
+  }
   
   changePage = page => this.setState({ page })
   
@@ -16,12 +24,14 @@ class App extends Component {
     }
 
   }
+  
 
 	render () {
     const SelectedPage = this.renderPage()
 
     return (
-      <div>
+      <Container>
+        <CssBaseline />
         <select name="page" id="page"
           onChange={(e) => this.setState({ page: e.target.value })}
         >
@@ -33,7 +43,7 @@ class App extends Component {
         </select>
 
         <SelectedPage changePage={this.changePage} />
-      </div>
+      </Container>
     )
     }
   }
