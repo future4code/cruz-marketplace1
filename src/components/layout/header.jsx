@@ -30,9 +30,9 @@ export default class Header extends React.Component{
             <Logotipo src={Logo} alt="logo future ninja"/>
                 <ButtonContainer>
                    <div> 
-                       <Button onClick= {this.props.page('user')}variant="contained" color="secondary">{"Contratante"}</Button>
+                       <Button onClick= {() => this.props.page('user')}variant="contained" color="secondary">{"Contratante"}</Button>
                        </div>
-                    <div><Button onClick={this.props.page('professional')}variant="contained" color="primary">{"Profissional"}</Button></div>
+                    <div><Button onClick={() => this.props.page('professional')}variant="contained" color="primary">{"Profissional"}</Button></div>
                 </ButtonContainer>    
           </HeaderContainer>
         )
