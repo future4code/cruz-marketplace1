@@ -11,7 +11,8 @@ import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
 import Footer from "./components/layout/footer"
-import CardProf from 'components/CardProf'
+import Home from "./pages/home";
+
 
 
 class App extends Component {
@@ -30,8 +31,6 @@ class App extends Component {
       default: return NotFound
     }
   }
-  
-
   render() {
     console.log(`Theme Config`, theme)
     const SelectedPage = this.renderPage()
@@ -54,6 +53,7 @@ class App extends Component {
         </Container>
       </ThemeProvider>
     )
+    
     }
   }
 
