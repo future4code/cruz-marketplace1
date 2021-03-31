@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 /*
   EXEMPLO DE USO 
-	<CardProf title={'Pintar parede'} description={'Quero que pinte todos os comodos da minha casa'} taked={false} paymentMethods={['Cash', 'Cartão']}></CardProf>
+		<CardUser title={'Pintar parede'} description={'Quero que pinte todos os comodos da minha casa'} onDelete={()=>alert('deletando...')} paymentMethods={['Cash', 'Cartão']}></CardUser>
 */
 
 const DetailsButton = styled(IconButton)`
@@ -20,9 +20,11 @@ const DetailsButton = styled(IconButton)`
   }
 `;
 
-const TakeButton = styled(Button)`
+const DeleteButton = styled(Button)`
+  color: #cf0000;
+  border-color: #cf0000;
   margin: 5px;
-`;
+`
 
 const MainContainer = styled.div`
   padding: 10px;
@@ -68,7 +70,7 @@ const Details = styled.div`
   width: 100%;
 `;
 
-export default class CardProf extends React.Component {
+export default class CardUser extends React.Component {
   state = {
     showDetails: false,
     arrow: "up",
@@ -93,12 +95,6 @@ export default class CardProf extends React.Component {
     };
 
     const details = () => {
-      let color = "";
-      if (this.props.taked) {
-        color = "#cf0000";
-      } else {
-        color = "green";
-      }
       if (this.state.showDetails) {
         return (
           <Details>
@@ -126,15 +122,13 @@ export default class CardProf extends React.Component {
                 )}
               </div>
             </Box>
-            <TakeButton
-              style={{ color: color, borderColor: color }}
-              onClick={this.props.onTake}
-              className="teste"
+            <DeleteButton
+              onClick={this.props.onDelete}
               variant='outlined'
               size="small"
             >
-              {this.props.taked ? "Descandidatar" : "Me candidatar"}
-            </TakeButton>
+              Excluir
+            </DeleteButton>
           </Details>
         );
       }

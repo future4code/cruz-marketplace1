@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
 
 
-
 class App extends Component {
   state = { page: 'home'}
   
@@ -34,10 +33,7 @@ class App extends Component {
     return (
       <Container>
         <CssBaseline />
-        
         <SelectedPage changePage={this.changePage} />
-        
-        
       </Container>
     )
     }
