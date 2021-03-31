@@ -11,7 +11,7 @@ import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
 import Footer from "./components/layout/footer"
-import CardProf from 'components/CardProf'
+import CardUser from 'components/CardUser'
 
 
 class App extends Component {
@@ -40,7 +40,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
-					<CardProf paymentMethods={['teste1', 'teste2', 'teste3']}></CardProf>
+					<CardUser paymentMethods={['teste1', 'teste2', 'teste3']}></CardUser>
           {/* <select name="page" id="page"
             onChange={(e) => this.setState({ page: e.target.value })}
           >
