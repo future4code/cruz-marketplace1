@@ -14,7 +14,6 @@ import Footer from "./components/layout/footer"
 import Home from "./pages/home";
 
 
-
 class App extends Component {
   state = { page: 'user'}
   
@@ -39,7 +38,6 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
-					<CardProf paymentMethods={['teste1', 'teste2', 'teste3']}></CardProf>
           {/* <select name="page" id="page"
             onChange={(e) => this.setState({ page: e.target.value })}
           >
