@@ -1,31 +1,40 @@
 import React from "react"
 import styled from "styled-components"
-import Logo from "components/img/logo.png"
+import Logo from "../../images/LogoComNome.svg"
 import Button from '@material-ui/core/Button';
 
 const HeaderContainer = styled.div`
+display:flex;
 background-color:rgb(B7,B7,B7);
-background-color:rgb(24,24,24);
-padding: 10px 0;
-justify-content:center;
+height: 100px;
+justify-content:space-between;
 align-items:center;
-`
 
+`
+const ButtonContainer = styled.div `
+display:flex;
+margin-right: 25px;
+ div{
+     margin-right: 25px;
+ }
+`
 const Logotipo = styled.img`
-height:80px;
-width:80px;
-margin-left: 20px;
+width:170px;
+margin-left: 35px;
 
 `
-
 export default class Header extends React.Component{
     render(){
         return(
             <HeaderContainer>
             <Logotipo src={Logo} alt="logo future ninja"/>
-                <Button variant="contained" color="primary">{"Contratante"}</Button>
-                <Button variant="contained" color="secondary">{"Profissional"}</Button>
-           </HeaderContainer>
+                <ButtonContainer>
+                   <div> 
+                       <Button onClick= {this.props.page('user')}variant="contained" color="secondary">{"Contratante"}</Button>
+                       </div>
+                    <div><Button onClick={this.props.page('professional')}variant="contained" color="primary">{"Profissional"}</Button></div>
+                </ButtonContainer>    
+          </HeaderContainer>
         )
     }
 

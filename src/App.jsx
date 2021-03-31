@@ -1,41 +1,40 @@
-// Atencao, nosso projeto esta com paths absolutos ativado
-// se estivermos em uma pasta em components, nao precisa usar: ../../../
-// Pode usar o path absoluto 'components' em qualquer lugar se quiser, blz?
-
 import React, { Component } from 'react'
-// Importado com o uso do arquivo index no pages, veja pages/index.js
-import { Home, User, Professional, CreateJob, NotFound } from 'pages'
+import { Home, User, Professional, RegistrationPage, NotFound } from 'pages'
 import theme from 'styles/theme'
-import { ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
+import * as api from 'utils/api'
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import * as api from 'utils/api'
-import Footer from "./components/layout/footer"
 import '@fontsource/roboto'
 
 class App extends Component {
-  state = { page: 'professional'}
+  state = { page: 'home'}
+  
+  componentDidMount () {
+    api.getAllJobs()
+    .then(r => console.log(r))
+  }
   
   changePage = page => this.setState({ page })
   
-  // Escolher a pagina conforme o texto no state.page
-  // Sempre colocar o texto igual no arquivo, separado por -, ex: pagina-inial
   renderPage = () => {
     switch (this.state.page) {
       case 'home': return Home
       case 'user': return User
       case 'professional': return Professional
-      case 'create-job': return CreateJob
+      case 'create-job': return RegistrationPage
       default: return NotFound
     }
+
   }
   
-  render() {
+
+	render () {
     console.log(`Theme Config`, theme)
     const SelectedPage = this.renderPage()
 
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider>
         <CssBaseline />
         <Container>
           <SelectedPage changePage={this.changePage} />
