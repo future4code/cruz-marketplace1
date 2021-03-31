@@ -40,7 +40,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
-					<CardUser paymentMethods={['teste1', 'teste2', 'teste3']}></CardUser>
+					<CardUser title={'Pintar parede'} description={'Quero que pinte todos os comodos da minha casa'} onDelete={()=>alert('deletando...')} paymentMethods={['Cash', 'Cartão']}></CardUser>
           {/* <select name="page" id="page"
             onChange={(e) => this.setState({ page: e.target.value })}
           >
