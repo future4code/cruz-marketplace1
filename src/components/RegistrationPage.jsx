@@ -13,7 +13,7 @@ export default class RegistrationPage extends React.Component {
             <Container>
                 <header>
                     <img src={LogoName}/>
-                    <MyButton variant="contained" color="secondary">Voltar</MyButton>
+                    <Button variant="contained" color="secondary">Voltar</Button>
                 </header>
                 
                 <h1>Cadastre um serviço</h1>
@@ -49,7 +49,7 @@ export default class RegistrationPage extends React.Component {
                     <label htmlFor="">Valor</label>
                     </Span>
                     
-                    <MyButton variant="contained" color="secondary">Cadastrar</MyButton>
+                    <Button variant="contained" color="secondary">Cadastrar</Button>
                 </form>
                 
                 <LogoNinjaImg src={LogoNinja} alt="Logo Ninja"/>
@@ -139,6 +139,7 @@ form {
         transition: .3s;
         border: none;
         border-radius: 5px;
+        box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
 
         :focus, :valid {
             color: #000;
@@ -164,9 +165,5 @@ opacity: .2;
 const Span = styled.span`
 position: relative;
 width: 70%;
-height: 30px;
-`
-const MyButton = styled(Button)`
-letter-spacing: 1px;
-font-weight: 600;   
+height: 30px;   
 `
