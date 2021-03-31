@@ -11,10 +11,11 @@ import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import * as api from 'utils/api'
 import Footer from "./components/layout/footer"
+import RegistrationPage from 'components/RegistrationPage'
 
 
 class App extends Component {
-  state = { page: 'user'}
+  state = { page: 'home'}
   
   changePage = page => this.setState({ page })
   
@@ -25,7 +26,7 @@ class App extends Component {
       case 'home': return Home
       case 'user': return User
       case 'professional': return Professional
-      case 'create-job': return CreateJob
+      case 'create-job': return RegistrationPage
       default: return NotFound
     }
   }
@@ -39,15 +40,6 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
-          {/* <select name="page" id="page"
-            onChange={(e) => this.setState({ page: e.target.value })}
-          >
-            <option value="home">Home</option>
-            <option value="user">User</option>
-            <option value="professional">Professional</option>
-            <option value="create-job">CreateJob</option>
-            <option value="notfound">NotFound</option>
-          </select> */}
         <SelectedPage changePage={this.changePage} />
         </Container>
       </ThemeProvider>
