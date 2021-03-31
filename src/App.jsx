@@ -9,6 +9,11 @@ import theme from 'styles/theme'
 import { ThemeProvider } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
+<<<<<<< HEAD
+=======
+import * as api from 'utils/api'
+import Footer from "./components/layout/footer"
+>>>>>>> master
 
 
 class App extends Component {
