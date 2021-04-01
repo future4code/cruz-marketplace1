@@ -12,6 +12,16 @@ const theme = createMuiTheme({
       default: '#F4F4F4',
       paper: 'rgba( 196, 196, 196, 0.2)'
     }
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        body: {
+          position: 'relative',
+          overflow: 'hidden',
+        }
+      }
+    }
   }
 })
 

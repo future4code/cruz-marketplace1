@@ -4,16 +4,20 @@ import theme from 'styles/theme'
 import { ThemeProvider } from '@material-ui/styles'
 import * as api from 'utils/api'
 import Container from '@material-ui/core/Container'
+import styled from 'styled-components'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import '@fontsource/roboto'
+import Footer from 'components/layout/footer'
+
+const MainContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
 
 class App extends Component {
   state = { page: 'home'}
-  
-  componentDidMount () {
-    api.getAllJobs()
-    .then(r => console.log(r))
-  }
   
   changePage = page => this.setState({ page })
   
@@ -26,6 +30,7 @@ class App extends Component {
       default: return NotFound
     }
   }
+
   
 
 	render () {
@@ -33,11 +38,12 @@ class App extends Component {
     const SelectedPage = this.renderPage()
 
     return (
-      <ThemeProvider>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container>
+        <MainContainer>
           <SelectedPage changePage={this.changePage} />
-        </Container>
+          <Footer />
+        </MainContainer>
       </ThemeProvider>
     )
     }

@@ -5,16 +5,17 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const FooterContainer = styled.div`
-background-color: rgb(49,49,49);
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100px;
-color:white;
-padding:15px;
-flex-direction:column;
-align-self:flex-end;
-
+  background-color: rgb(49,49,49);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  color:white;
+  padding:15px;
+  flex-direction:column;
+  align-self:flex-end;
+  margin-top: 2%;
 
 `
 

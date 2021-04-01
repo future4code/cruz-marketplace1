@@ -9,6 +9,8 @@ background-color:rgb(B7,B7,B7);
 height: 100px;
 justify-content:space-between;
 align-items:center;
+max-width: 1280px;
+margin: 0 auto;
 
 `
 const ButtonContainer = styled.div `
