@@ -11,6 +11,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
 import CardUser from "../components/CardUser";
+import Grow from "@material-ui/core/Grow";
 
 const PageContainer = styled.div`
   display: flex;
@@ -179,7 +180,7 @@ export class User extends Component {
   deleteMyJob = (id) => {
     deleteJob(id)
       .then((result) => {
-        alert('Job excluido com sucesso!')
+        alert("Job excluido com sucesso!");
         getAllJobs().then((result) => {
           this.setState({ jobList: result.jobs });
         });
@@ -298,15 +299,26 @@ export class User extends Component {
             </Filter>
             <JobList>
               {this.loadingCheck() ||
-                orderedJobs.map((job) => {
+                orderedJobs.map((job, index) => {
                   return (
-                    <CardUser
-                      onDelete={()=>this.deleteMyJob(job.id)}
-                      paymentMethods={job.paymentMethods}
-                      title={job.title}
-                      description={job.description}
-                      data={job.dueDate}
-                    />
+                    <Grow
+                      in={true}
+                      timeout={{
+                        enter: 500 + index * 500,
+                        exit: 1000,
+                      }}
+                      key={job.id}
+                    >
+                      <div>
+                        <CardUser
+                          onDelete={() => this.deleteMyJob(job.id)}
+                          paymentMethods={job.paymentMethods}
+                          title={job.title}
+                          description={job.description}
+                          data={job.dueDate}
+                        />
+                      </div>
+                    </Grow>
                   );
                 })}
             </JobList>
