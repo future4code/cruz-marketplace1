@@ -13,6 +13,8 @@ const HomeContainer = styled.div`
 display:flex;
 flex-direction:row;
 height:65vh;
+max-width: 1280px;
+margin: 0 auto;
 
 img{
   margin-top:10px;
@@ -52,12 +54,7 @@ export class Home extends Component {
   render() {
     return (     
       <div>
-        <Header
-       page={this.props.changePage}
-    
-        
-        
-        />
+          <Header page={this.props.changePage} />
           <HomeContainer>
             <ChamadaHome>
               <p> Milhares de <span>profissionais</span><br/>prontos 
@@ -69,7 +66,7 @@ export class Home extends Component {
             </ChamadaHome>
                <img src={HomeImage}/> 
           </HomeContainer>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     )
   }
