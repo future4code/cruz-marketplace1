@@ -15,7 +15,6 @@ class Professional extends Component {
     }
     this.filterJob = this.props.filterJob
     this.controlInput = this.props.controlInput
-
   }
 
   onTake = job => {
@@ -26,15 +25,16 @@ class Professional extends Component {
         newJobs.forEach(
           item => (item.taken = item.id === job.id ? false : item.taken)
         )
+        this.setState({ jobs: newJobs })
       })
     } else {
       takeJob(job.id).then(r => {
         newJobs.forEach(
           item => (item.taken = item.id === job.id ? true : item.taken)
         )
+        this.setState({ jobs: newJobs })
       })
     }
-    this.setState({ jobs: newJobs })
   }
 
   render() {
@@ -73,5 +73,4 @@ class Professional extends Component {
   }
 }
 
-// export withStyles(styles)(Professional)
 export default WithFilters(Professional)
