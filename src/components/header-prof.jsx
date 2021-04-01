@@ -11,10 +11,11 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     width: "170px",
+    cursor: 'pointer',
   },
 }))
 
-export const HeaderProf = () => {
+export const HeaderProf = props => {
   const classes = useStyles()
 
   return (
@@ -31,7 +32,7 @@ export const HeaderProf = () => {
           className={classes.logo}
           src={logo}
           alt='Future Ninjas Logo'
-          onClick={() => this.props.changePage("home")}
+          onClick={() => props.changePage("home")}
         />
       </Grid>
 

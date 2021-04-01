@@ -83,7 +83,7 @@ export class RegistrationPage extends React.Component {
           </Snackbar>
         )}
         <header>
-          <img src={LogoName} />
+          <img src={LogoName} alt='logo' />
           <Button
             onClick={() => this.props.changePage("home")}
             variant="contained"

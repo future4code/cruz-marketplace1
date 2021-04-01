@@ -17,7 +17,7 @@ const WithFilters = WrapedComponent => {
     state = {
       jobs: [],
       filteredJobs: [],
-      filters: [],
+      filters: defaultValues
     }
 
     componentDidMount() {
@@ -25,40 +25,52 @@ const WithFilters = WrapedComponent => {
         this.setState({
           jobs: [...r.jobs],
           filteredJobs: [...r.jobs],
-          isLoading: false
+          isLoading: false,
         })
       })
     }
+
+    componentWillUnmount() {}
 
     controlInput = e => {
       let { name, value } = e.target
       console.log("Aqui", name, value)
       value = name.includes("value") ? Number(value) : String(value)
-      console.log('tipo: ', typeof value)
+      console.log("tipo: ", typeof value)
 
       this.setState(
         {
-          filters: { ...this.state.filters, [name]: value }
-        }, () => this.filterJob(this.state.filters))
+          filters: { ...this.state.filters, [name]: value },
+        },
+        () => this.filterJob(this.state.filters)
+      )
     }
 
     filterJob = filter => {
-      const { valueMin, valueMax, search, order } = filter
+      let { valueMin, valueMax, search, order } = filter
       console.log({ valueMin, valueMax, search })
-      console.log('Filter: ', filter)
-      if (!filter.valueMax) { filter.valueMax = Infinity }
-      if (!filter.valueMin) { filter.valueMin = 0 }
+      console.log("Filter: ", filter)
+      valueMin = Number(filter.valueMin)
+      valueMax = Number(filter.valueMax)
+      if (!valueMax) {
+        valueMax = 1000
+      }
+      if (!valueMin) {
+        valueMin = 0
+      }
 
       const filterOption = job => {
-        console.log({job})
-        return job.value > filter.valueMin &&
-        job.value < filter.valueMax &&
-        job.title.includes(filter.search)
+        console.log({ job })
+        return (
+          Number(job.value) > valueMin &&
+          Number(job.value) < valueMax &&
+          job.title.includes(filter.search)
+        )
       }
 
       const orderByOption = (itemA, itemB) => {
-        console.log('ORDER: ', itemA[filter.order], itemB[filter.order])
-        return itemA[filter.order] < itemB[filter.order]
+        console.log("ORDER: ", itemA[order], itemB[order])
+        return itemA[order] < itemB[order]
       }
 
       let filteredJobs
@@ -68,8 +80,8 @@ const WithFilters = WrapedComponent => {
       } else {
         filteredJobs = this.state.jobs.filter(filterOption)
       }
-      console.log('valuemin: ', filter.valueMin)
-      console.log('VAMOS ORDENAR')
+      console.log("valuemin: ", filter.valueMin)
+      console.log("VAMOS ORDENAR")
       const orderedJobs = filteredJobs.sort(orderByOption)
 
       this.setState({ filteredJobs: orderedJobs })

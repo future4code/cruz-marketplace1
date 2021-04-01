@@ -1,9 +1,7 @@
 //import { styled } from '@material-ui/core'
-import { Grid } from '@material-ui/core'
 import React, { Component } from 'react'
 import HomeImage from "../images/homeImage.png"
 import styled from "styled-components"
-import Footer from "../components/layout/footer"
 import Header from "../components/layout/header"
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -64,7 +62,7 @@ export class Home extends Component {
                   <SearchIcon fontSize="large"/>
                 </div>
             </ChamadaHome>
-               <img src={HomeImage}/> 
+               <img src={HomeImage} alt='logo' /> 
           </HomeContainer>
         {/* <Footer/> */}
       </div>

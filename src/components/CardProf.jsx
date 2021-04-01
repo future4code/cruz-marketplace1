@@ -109,6 +109,7 @@ export default class CardProf extends React.Component {
         return <ArrowDownwardIcon />;
       }
     };
+    console.log(this.props)
 
     return (
       <MainContainer>
@@ -131,14 +132,14 @@ export default class CardProf extends React.Component {
             </Box>
             <Box>
               <h4>Prazo</h4>
-              <p>{this.props.data ? this.props.data : "22/07/02"}</p>
+              <p>{this.props.dueDate ? this.props.dueDate : "22/07/02"}</p>
             </Box>
             <Box>
               <h4>Métodos de pagamento</h4>
               <div>
                 {this.props.paymentMethods ? (
-                  this.props.paymentMethods.map((i) => {
-                    return <h5>{i}</h5>;
+                  this.props.paymentMethods.map((i, key) => {
+                    return <h5 key={key}>{i}</h5>;
                   })
                 ) : (
                   <h5>preencha a props paymentMethods</h5>
@@ -152,7 +153,7 @@ export default class CardProf extends React.Component {
               variant="outlined"
               size="small"
             >
-              {this.props.taked ? "Descandidatar" : "Me candidatar"}
+              {this.props.taken ? "Descandidatar" : "Me candidatar"}
             </TakeButton>
           </Details>
         </Collapse>
