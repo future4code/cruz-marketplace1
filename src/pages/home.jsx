@@ -4,7 +4,8 @@ import HomeImage from "../images/homeImage.png"
 import styled from "styled-components"
 import Header from "../components/layout/header"
 import SearchIcon from '@material-ui/icons/Search';
-
+import Button from '@material-ui/core/Button';
+import {getAllJobs} from "utils/api"
 
 
 const HomeContainer = styled.div`
@@ -48,19 +49,63 @@ div > input{
 }
 
 `
+
+
+
+
 export class Home extends Component {
-  render() {
-    return (     
+
+  state={
+    inputValue:"",
+    jobList:[]
+  }
+  
+
+  onChangePesquisa=(event)=>{
+    this.setState({inputValue:event.target.value})
+
+  }
+
+  pesquisar=()=>{
+   this.props.changePage('professional', inputValue)
+  
+    
+  }
+
+  componentDidMount() {
+    getAllJobs().then((result) => {
+      this.setState({ jobList: result.jobs});
+    });
+  }
+
+  render(){
+    console.log(this.state.inputValue);
+  
+  const listJobs = this.state.jobList.map((job) => {
+    return <p>{job.title}</p>
+  });
+console.log("nome do job:" + listJobs)
+  return (     
       <div>
-          <Header page={this.props.changePage} />
+        <Header page={this.props.changePage} />
           <HomeContainer>
             <ChamadaHome>
               <p> Milhares de <span>profissionais</span><br/>prontos 
               para começar a <br/>trabalhar no seu projeto</p>
                 <div>
-                  <input placeholder="Digite o que você precisa! ;)"/>
-                  <SearchIcon fontSize="large"/>
+                  <input 
+                  value={this.state.inputValue} 
+                  placeholder="Digite o que você precisa! ;)"
+                  onChange={this.onChangePesquisa}
+                  />
+                  <Button
+                variant="contained"
+                color="primary"
+                startIcon={<SearchIcon color="disabled"/>}
+                fontSize="large"
+                onClick={this.pesquisar}>Pesquisar</Button>
                 </div>
+               
             </ChamadaHome>
                <img src={HomeImage} alt='logo' /> 
           </HomeContainer>
