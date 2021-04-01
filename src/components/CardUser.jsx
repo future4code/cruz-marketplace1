@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import IconButton from "@material-ui/core/IconButton";
+import Collapse from "@material-ui/core/Collapse";
 
 /*
   EXEMPLO DE USO 
@@ -24,7 +25,7 @@ const DeleteButton = styled(Button)`
   color: #cf0000;
   border-color: #cf0000;
   margin: 5px;
-`
+`;
 
 const MainContainer = styled.div`
   padding: 10px;
@@ -55,6 +56,7 @@ const Value = styled.span`
 const Box = styled.div`
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: 5px;
+  width: 400px;
 `;
 
 const Title = styled.div`
@@ -94,9 +96,16 @@ export default class CardUser extends React.Component {
       }
     };
 
-    const details = () => {
-      if (this.state.showDetails) {
-        return (
+    return (
+      <MainContainer>
+        <DetailsButton onClick={this.detailsHandle} aria-label="details">
+          {arrow()}
+        </DetailsButton>
+        <Title>
+          <h3>{this.props.title ? this.props.title : "Titulo de exemplo"}</h3>
+          <Value>R${this.props.value ? this.props.value : "200"}</Value>
+        </Title>
+        <Collapse in={this.state.showDetails}>
           <Details>
             <Box>
               <h4>Detalhes</h4>
@@ -124,26 +133,13 @@ export default class CardUser extends React.Component {
             </Box>
             <DeleteButton
               onClick={this.props.onDelete}
-              variant='outlined'
+              variant="outlined"
               size="small"
             >
               Excluir
             </DeleteButton>
           </Details>
-        );
-      }
-    };
-
-    return (
-      <MainContainer>
-        <DetailsButton onClick={this.detailsHandle} aria-label="details">
-          {arrow()}
-        </DetailsButton>
-        <Title>
-          <h3>{this.props.title ? this.props.title : "Titulo de exemplo"}</h3>
-          <Value>R${this.props.value ? this.props.value : "200"}</Value>
-        </Title>
-        {details()}
+        </Collapse>
       </MainContainer>
     );
   }

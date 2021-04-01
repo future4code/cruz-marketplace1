@@ -1,27 +1,27 @@
-import React, { Component } from "react"
-import { getAllJobs, takeJob, giveUpJob } from "utils/api"
-import CardProf from "components/CardProf"
-import logo from "images/LogoComNome.svg"
-import Footer from "components/layout/footer"
+import React, { Component } from "react";
+import { getAllJobs, takeJob, giveUpJob } from "utils/api";
+import CardProf from "components/CardProf";
+import logo from "images/LogoComNome.svg";
+import Footer from "components/layout/footer";
 
-import { withStyles } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
-import Typography from "@material-ui/core/Typography"
-import TextField from "@material-ui/core/TextField"
-import InputAdornment from "@material-ui/core/InputAdornment"
-import { FilterSharp, Search } from "@material-ui/icons"
-import { Button, FormGroup, Grow, Paper } from "@material-ui/core"
-import Snackbar from "@material-ui/core/Snackbar"
-import MuiAlert from "@material-ui/lab/Alert"
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { FilterSharp, Search } from "@material-ui/icons";
+import { Button, FormGroup, Grow, Paper } from "@material-ui/core";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
-import Radio from "@material-ui/core/Radio"
-import RadioGroup from "@material-ui/core/RadioGroup"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import FormControl from "@material-ui/core/FormControl"
-import FormHelperText from "@material-ui/core/FormHelperText"
-import FormLabel from "@material-ui/core/FormLabel"
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormLabel from "@material-ui/core/FormLabel";
 
-const styles = theme => ({
+const styles = (theme) => ({
   header: {
     marginTop: "2%",
   },
@@ -60,7 +60,7 @@ const styles = theme => ({
     textAlign: "center",
   },
   filterValues: {},
-})
+});
 
 class Professional extends Component {
   state = {
@@ -68,43 +68,43 @@ class Professional extends Component {
     filters: [],
     isLoading: true,
     input: { nome: "" },
-  }
+  };
 
   componentDidMount() {
-    getAllJobs().then(r => {
-      this.setState({ jobs: [...r.jobs], isLoading: false })
-    })
+    getAllJobs().then((r) => {
+      this.setState({ jobs: [...r.jobs], isLoading: false });
+    });
   }
 
-  controlInput = e => {
-    let { name, value } = e.target
-    value = name.includes("value") ? Number(value) : String(value)
-    this.setState({ filters: { ...this.state.filters, [name]: value } })
-  }
+  controlInput = (e) => {
+    let { name, value } = e.target;
+    value = name.includes("value") ? Number(value) : String(value);
+    this.setState({ filters: { ...this.state.filters, [name]: value } });
+  };
 
-  onTake = job => {
-    const newJobs = [...this.state.jobs]
+  onTake = (job) => {
+    const newJobs = [...this.state.jobs];
 
     if (job.taken) {
-      giveUpJob(job.id).then(r => {
+      giveUpJob(job.id).then((r) => {
         newJobs.forEach(
-          item => (item.taken = item.id === job.id ? false : item.taken)
-        )
-      })
+          (item) => (item.taken = item.id === job.id ? false : item.taken)
+        );
+        this.setState({ jobs: newJobs });
+      });
     } else {
-      takeJob(job.id).then(r => {
+      takeJob(job.id).then((r) => {
         newJobs.forEach(
-          item => (item.taken = item.id === job.id ? true : item.taken)
-        )
-      })
+          (item) => (item.taken = item.id === job.id ? true : item.taken)
+        );
+        this.setState({ jobs: newJobs });
+      });
     }
-    this.setState({ jobs: newJobs })
-  }
-
+  };
 
   render() {
-    const { classes } = this.props
-    const show = Boolean(this.state.jobs.length)
+    const { classes } = this.props;
+    const show = Boolean(this.state.jobs.length);
 
     return (
       <Grid container spacing={8}>
@@ -112,16 +112,16 @@ class Professional extends Component {
           className={classes.header}
           container
           item
-          justify='space-between'
-          alignItems='center'
+          justify="space-between"
+          alignItems="center"
           spacing={0}
         >
           <Grid item xs={2}>
-            <img className={classes.logo} src={logo} alt='Future Ninjas Logo' />
+            <img className={classes.logo} src={logo} alt="Future Ninjas Logo" />
           </Grid>
 
           <Grid item xs={10}>
-            <Typography variant='h2' color='secondary' align='center'>
+            <Typography variant="h2" color="secondary" align="center">
               Professional
             </Typography>
           </Grid>
@@ -141,43 +141,43 @@ class Professional extends Component {
           spacing={1}
           xs={12}
           className={classes.filter}
-          justify='space-evenly'
+          justify="space-evenly"
         >
           {/* <FormControl component="fieldset" error={'ma oi'} className={classes.formControl}> */}
           <Grid
             container
             item
             xs={6}
-            direction='column'
-            justify='center'
-            alignItems='center'
+            direction="column"
+            justify="center"
+            alignItems="center"
           >
-            <FormLabel component='legend' color='primary'>
-              <Typography color='primary'>Ordenar por:</Typography>
+            <FormLabel component="legend" color="primary">
+              <Typography color="primary">Ordenar por:</Typography>
             </FormLabel>
             <RadioGroup
-              name='order'
+              name="order"
               value={this.state.filters.order}
               onChange={this.controlInput}
             >
               <FormControlLabel
-                value='title'
+                value="title"
                 control={<Radio />}
-                label='Título'
+                label="Título"
               />
               <FormControlLabel
-                value='value'
+                value="value"
                 control={<Radio />}
-                label='Valor'
+                label="Valor"
               />
               <FormControlLabel
-                value='time'
+                value="time"
                 control={<Radio />}
-                label='Prazo'
+                label="Prazo"
               />
             </RadioGroup>
             {/* <FormHelperText>{helperText}</FormHelperText> */}
-            <Button variant='outlined' color='primary'>
+            <Button variant="outlined" color="primary">
               Ordenar
             </Button>
           </Grid>
@@ -186,41 +186,41 @@ class Professional extends Component {
             container
             item
             xs={6}
-            justify='space-between'
-            alignItems='center'
-            direction='row'
+            justify="space-between"
+            alignItems="center"
+            direction="row"
           >
             <FormLabel
-              component='legend'
-              color='primary'
+              component="legend"
+              color="primary"
               className={classes.fullWidth}
             >
-              <Typography color='primary'>Filtrar Valores</Typography>
+              <Typography color="primary">Filtrar Valores</Typography>
             </FormLabel>
             <TextField
-              type='number'
-              name='valueMin'
-              label='Valor Mínimo'
+              type="number"
+              name="valueMin"
+              label="Valor Mínimo"
               value={this.state.filters.valueMin}
               onChange={this.controlInput}
               className={classes.inputValor}
             />
             <TextField
-              type='number'
-              name='valueMax'
-              label='Valor Máximo'
+              type="number"
+              name="valueMax"
+              label="Valor Máximo"
               value={this.state.filters.valueMax}
               onChange={this.controlInput}
               className={classes.inputValor}
             />
-            <Button variant='outlined' color='primary'>
+            <Button variant="outlined" color="primary">
               Filtrar
             </Button>
 
             <TextField
               fullWidth
-              type='search'
-              label='Pesquisar...'
+              type="search"
+              label="Pesquisar..."
               InputProps={{
                 endAdornment: <Search />,
               }}
@@ -241,26 +241,36 @@ class Professional extends Component {
           container
           // xs={12}
           spacing={6}
-          justify='space-between'
-          alignItems='flex-start'
+          justify="space-between"
+          alignItems="flex-start"
         >
-
           {this.state.jobs.map((job, index) => (
-            <Grow in={show} mountOnEnter={true} timeout={{
-              enter: 500 + index * 500,
-              exit: 1000 ,
-            }} key={job.id}>
-            <Grid container item xs={4} >
-                <CardProf key={job.id} {...job} onTake={() => this.onTake(job)} />
-            </Grid>
+            <Grow
+              in={show}
+              mountOnEnter={true}
+              timeout={{
+                enter: 500 + index * 500,
+                exit: 1000,
+              }}
+              key={job.id}
+            >
+              <Grid container item xs={4}>
+                <CardProf
+                  taked={job.taken}
+                  data={job.dueDate}
+                  key={job.id}
+                  {...job}
+                  onTake={() => this.onTake(job)}
+                />
+              </Grid>
             </Grow>
           ))}
         </Grid>
         <Footer />
       </Grid>
-    )
+    );
   }
 }
 
 // export withStyles(styles)(Professional)
-export default withStyles(styles)(Professional)
+export default withStyles(styles)(Professional);
