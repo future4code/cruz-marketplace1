@@ -12,6 +12,10 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
 import CardUser from "../../components/CardUser";
 import Grow from "@material-ui/core/Grow";
+import Container from "@material-ui/core/Container"
+import Grid from "@material-ui/core/Grid"
+
+
 
 export class User extends Component {
   state = {
@@ -70,10 +74,13 @@ export class User extends Component {
     const filteredJobs = this.state.jobList.filter((job) => {
       return (
         Number(job.value) >= this.state.minValue &&
-        Number(job.value) >= this.state.maxValue &&
+        Number(job.value) <= this.state.maxValue &&
         job.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())
       );
     });
+
+    console.log(filteredJobs)
+
 
     let orderedJobs;
     switch (this.state.orderType) {
