@@ -15,9 +15,9 @@ const MainContainer = styled.div`
 `
 
 class App extends Component {
-  state = { page: 'home'}
+  state = { page: 'home', search: '' }
   
-  changePage = page => this.setState({ page })
+  changePage = (page, search) => this.setState({ page, search })
   
   renderPage = () => {
     switch (this.state.page) {
@@ -34,12 +34,14 @@ class App extends Component {
 	render () {
     console.log(`Theme Config`, theme)
     const SelectedPage = this.renderPage()
+    const changePage = this.changePage
+    const search = this.state.search
 
     return (
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <MainContainer>
-          <SelectedPage changePage={this.changePage} />
+          <SelectedPage {...{changePage, search}} />
           <Footer />
         </MainContainer>
       </ThemeProvider>
