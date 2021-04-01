@@ -27,6 +27,10 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
+  & > img {
+    cursor: pointer;
+  }
+
   & > :nth-child(3) {
     font-size: 1.5rem;
   }
@@ -161,11 +165,11 @@ export class User extends Component {
   };
 
   handleMinValue = (event) => {
-    this.setState({ minValue: event.target.value });
+    this.setState({ minValue: Number(event.target.value) });
   };
 
   handleMaxValue = (event) => {
-    this.setState({ maxValue: event.target.value });
+    this.setState({ maxValue: Number(event.target.value) });
   };
 
   loadingCheck = () => {
@@ -190,9 +194,9 @@ export class User extends Component {
   render() {
     const filteredJobs = this.state.jobList.filter((job) => {
       return (
-        job.value >= this.state.minValue &&
-        job.value <= this.state.maxValue &&
-        job.title.includes(this.state.searchQuery)
+        Number(job.value) >= this.state.minValue &&
+        Number(job.value) >= this.state.maxValue &&
+        job.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())
       );
     });
 
@@ -217,9 +221,9 @@ export class User extends Component {
     return (
       <PageContainer>
         <Header>
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" onClick={() => this.props.changePage('home')} />
           <SectionTitle>Contratante</SectionTitle>
-          <Button variant="contained" color="secondary" size="large" href="/">
+          <Button variant="contained" color="secondary" size="large" onClick={() => this.props.changePage('create-job')}>
             Cadastrar
           </Button>
         </Header>
@@ -233,6 +237,7 @@ export class User extends Component {
             <SearchBar
               type="search"
               placeholder="Digite o titulo que está procurando"
+              value={this.state.searchQuery}
               onChange={this.handleSearchQuery}
             />
           </SubHeader>
@@ -256,13 +261,13 @@ export class User extends Component {
               <ValueBtns>
                 <p>Valores</p>
                 <ButtonGroup variant="contained" color="primary" size="small">
-                  <Button onClick={() => this.changeMaxValue(100)}>
+                  <Button onClick={() => this.changeMaxValue(100.0)}>
                     Até 100
                   </Button>
-                  <Button onClick={() => this.changeMaxValue(500)}>
+                  <Button onClick={() => this.changeMaxValue(500.0)}>
                     Até 500
                   </Button>
-                  <Button onClick={() => this.changeMaxValue(1000)}>
+                  <Button onClick={() => this.changeMaxValue(1000.0)}>
                     Até 1000
                   </Button>
                 </ButtonGroup>
@@ -306,6 +311,7 @@ export class User extends Component {
                       title={job.title}
                       description={job.description}
                       data={job.dueDate}
+                      value={job.value}
                     />
                   );
                 })}
