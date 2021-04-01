@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { getAllJobs } from '../utils/api'
+import { getAllJobs, deleteJob } from "../utils/api";
 import { Button } from "@material-ui/core";
 import logo from "../images/LogoComNome.svg";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,9 +8,9 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Input from '@material-ui/core/Input';
-
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Input from "@material-ui/core/Input";
+import CardUser from "../components/CardUser";
 
 const PageContainer = styled.div`
   display: flex;
@@ -112,15 +112,13 @@ const MinMax = styled.div`
 
 const JobList = styled.div`
   grid-column: 3/7;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   grid-auto-rows: 300px;
   grid-gap: 10px;
+  justify-content: center;
   padding-bottom: 20px;
-  background: blue;
-
-  & > div {
-    background: purple;
-  }
 `;
 
 const SearchBar = styled.input`
@@ -153,10 +151,9 @@ export class User extends Component {
   };
 
   componentDidMount() {
-    getAllJobs().then((result => {
-      this.setState({ jobList: result.jobs})
-    }))
-    
+    getAllJobs().then((result) => {
+      this.setState({ jobList: result.jobs });
+    });
   }
 
   handleOrderType = (event) => {
@@ -176,8 +173,19 @@ export class User extends Component {
   };
 
   changeMaxValue = (value) => {
-    this.setState({ maxValue: value})
-  }
+    this.setState({ maxValue: value });
+  };
+
+  deleteMyJob = (id) => {
+    deleteJob(id)
+      .then((result) => {
+        alert('Job excluido com sucesso!')
+        getAllJobs().then((result) => {
+          this.setState({ jobList: result.jobs });
+        });
+      })
+      .catch(() => {});
+  };
 
   render() {
     const filteredJobs = this.state.jobList.filter((job) => {
@@ -189,11 +197,15 @@ export class User extends Component {
     });
 
     let orderedJobs;
-    switch(this.state.orderType) {
-      case 'titulo':
+    switch (this.state.orderType) {
+      case "titulo":
         orderedJobs = filteredJobs.sort((a, b) => {
-          if(a.title.toLowerCase() < b.title.toLowerCase()) { return -1; }
-          if(a.title.toLowerCase() > b.title.toLowerCase()) { return 1; }
+          if (a.title.toLowerCase() < b.title.toLowerCase()) {
+            return -1;
+          }
+          if (a.title.toLowerCase() > b.title.toLowerCase()) {
+            return 1;
+          }
           return 0;
         });
         break;
@@ -244,48 +256,58 @@ export class User extends Component {
               <ValueBtns>
                 <p>Valores</p>
                 <ButtonGroup variant="contained" color="primary" size="small">
-                  <Button onClick={() => this.changeMaxValue(100)} >Até 100</Button>
-                  <Button onClick={() => this.changeMaxValue(500)} >Até 500</Button>
-                  <Button onClick={() => this.changeMaxValue(1000)} >Até 1000</Button>
+                  <Button onClick={() => this.changeMaxValue(100)}>
+                    Até 100
+                  </Button>
+                  <Button onClick={() => this.changeMaxValue(500)}>
+                    Até 500
+                  </Button>
+                  <Button onClick={() => this.changeMaxValue(1000)}>
+                    Até 1000
+                  </Button>
                 </ButtonGroup>
               </ValueBtns>
 
               <MinMax>
-              <FormControl fullWidth color="primary">
-                    <InputLabel htmlFor="valor-min">
-                      Minimo
-                    </InputLabel>
-                    <Input
-                      id="valor-min"
-                      type="number"
-                      value={this.state.minValue}
-                      onChange={this.handleMinValue}
-                      startAdornment={
-                        <InputAdornment position="start">R$</InputAdornment>
-                      }
-                    />
-                  </FormControl>
+                <FormControl fullWidth color="primary">
+                  <InputLabel htmlFor="valor-min">Minimo</InputLabel>
+                  <Input
+                    id="valor-min"
+                    type="number"
+                    value={this.state.minValue}
+                    onChange={this.handleMinValue}
+                    startAdornment={
+                      <InputAdornment position="start">R$</InputAdornment>
+                    }
+                  />
+                </FormControl>
 
-                  <FormControl fullWidth color="primary">
-                    <InputLabel htmlFor="valor-max">
-                      Maximo
-                    </InputLabel>
-                    <Input
-                      id="valor-max"
-                      type="number"
-                      value={this.state.maxValue}
-                      onChange={this.handleMaxValue}
-                      startAdornment={
-                        <InputAdornment position="start">R$</InputAdornment>
-                      }
-                    />
-                  </FormControl>
+                <FormControl fullWidth color="primary">
+                  <InputLabel htmlFor="valor-max">Maximo</InputLabel>
+                  <Input
+                    id="valor-max"
+                    type="number"
+                    value={this.state.maxValue}
+                    onChange={this.handleMaxValue}
+                    startAdornment={
+                      <InputAdornment position="start">R$</InputAdornment>
+                    }
+                  />
+                </FormControl>
               </MinMax>
             </Filter>
             <JobList>
               {this.loadingCheck() ||
                 orderedJobs.map((job) => {
-                  return <div>{job.title}</div>;
+                  return (
+                    <CardUser
+                      onDelete={()=>this.deleteMyJob(job.id)}
+                      paymentMethods={job.paymentMethods}
+                      title={job.title}
+                      description={job.description}
+                      data={job.dueDate}
+                    />
+                  );
                 })}
             </JobList>
           </Content>

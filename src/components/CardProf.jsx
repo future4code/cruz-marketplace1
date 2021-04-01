@@ -111,7 +111,7 @@ export default class CardProf extends React.Component {
               </p>
             </Box>
             <Box>
-              <h4>Data</h4>
+              <h4>Prazo</h4>
               <p>{this.props.data ? this.props.data : "22/07/02"}</p>
             </Box>
             <Box>
