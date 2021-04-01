@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import FormLabel from "@material-ui/core/FormLabel"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Radio from "@material-ui/core/Radio"
@@ -32,8 +32,8 @@ const useStyles = makeStyles(theme => ({
 
 export const FilterProf = props => {
   const classes = useStyles()
-  const { order, valueMin, valueMax, search } = props.filter
-  const control = props.control
+  const { order, valueMin, valueMax, search, orderSeq } = props.input
+  const control = props.controlInput
 
   return (
     <Grid
@@ -47,7 +47,7 @@ export const FilterProf = props => {
       <Grid
         container
         item
-        xs={6}
+        xs={2}
         direction='column'
         justify='center'
         alignItems='center'
@@ -56,7 +56,7 @@ export const FilterProf = props => {
           <Typography color='primary'>Ordenar por:</Typography>
         </FormLabel>
         <RadioGroup name='order' value={order} onChange={control}>
-          <FormControlLabel value='title' control={<Radio />} label='Título' />
+          <FormControlLabel selected value='title' control={<Radio />} label='Título' />
           <FormControlLabel value='value' control={<Radio />} label='Valor' />
           <FormControlLabel value='dueDate' control={<Radio />} label='Prazo' />
         </RadioGroup>
@@ -65,10 +65,12 @@ export const FilterProf = props => {
         </Button>
       </Grid>
 
+
+
       <Grid
         container
         item
-        xs={6}
+        xs={8}
         justify='space-between'
         alignItems='center'
         direction='row'
@@ -112,6 +114,30 @@ export const FilterProf = props => {
           onChange={control}
         />
       </Grid>
+
+
+
+      <Grid
+        container
+        item
+        xs={2}
+        direction='column'
+        justify='center'
+        alignItems='center'
+      >
+        <FormLabel component='legend' color='primary'>
+          <Typography color='primary'>Ordem:</Typography>
+        </FormLabel>
+        <RadioGroup name='orderSeq' value={orderSeq} onChange={control}>
+          <FormControlLabel selected value='rec' control={<Radio />} label='Recomendados' />
+          <FormControlLabel value='asc' control={<Radio />} label='Crescente' />
+          <FormControlLabel value='desc' control={<Radio />} label='Decrescente' />
+        </RadioGroup>
+        <Button variant='outlined' color='primary'>
+          Ordenar
+        </Button>
+      </Grid>
+
     </Grid>
   )
 }

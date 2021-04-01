@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { getAllJobs, deleteJob } from "../../utils/api";
 import { Button } from "@material-ui/core";
 import logo from "images/LogoComNome.svg";
