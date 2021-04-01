@@ -67,9 +67,7 @@ export class Home extends Component {
   }
 
   pesquisar=()=>{
-   this.props.changePage('professional', inputValue)
-  
-    
+    this.props.changePage('professional', this.state.inputValue)
   }
 
   componentDidMount() {

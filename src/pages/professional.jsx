@@ -16,14 +16,19 @@ const defaultValues = {
 }
 const Professional = props => {
   const [jobs, setJobs] = useState([])
-  const { input, controlInput } = useInput(defaultValues)
+  const { input, setInput, controlInput } = useInput(defaultValues)
   const [reload, setReload] = useState(true)
+
+
+
 
   useEffect(() => {
     if (reload) {
       getAllJobs().then(r => {
         setJobs([...r.jobs])
       })
+      const search = props.search || ''
+      setInput({ ...input, search })
       setReload(false)
     }
   }, [reload])
@@ -65,6 +70,7 @@ const Professional = props => {
   })
   if (orderSeq === 'rec') job.order((jobA, jobB) => jobA.value - jobB.value)
   
+  console.log(props)
   return (
     <Container>
       <Grid container spacing={8}>
