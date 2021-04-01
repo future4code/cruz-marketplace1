@@ -4,42 +4,62 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
 `;
 
 export const MainContent = styled.main`
-  padding-left: 100px;
+  padding-left: 50px;
 `;
 
 export const Header = styled.header`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  padding: 0 40px;
 
   & > img {
     cursor: pointer;
+    width: 170px;
   }
 
   & > :nth-child(3) {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 `;
 
 export const SectionTitle = styled.h1`
-  font-size: 3rem;
+  font-size: 2.75rem;
   color: #e0286799;
 `;
 
 export const SubHeader = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  padding: 20px 0;
 
   & > h2 {
     font-size: 2.25rem;
-    flex: 3;
+    flex: 2 300px;
 
     & > span {
       color: #e02867;
     }
   }
+`;
+
+export const SearchBar = styled.input`
+  align-self: center;
+  background-color: #c4c4c430;
+  padding: 0 10px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 2px gray;
+  height: 65px;
+  flex: 2;
+  font-size: 1.5rem;
 `;
 
 export const Content = styled.div`
@@ -60,8 +80,8 @@ export const Filter = styled.div`
   & > * {
     padding-top: 40px;
   }
-`;
-
+  `;
+  
 export const OrderFilter = styled.div`
   display: flex;
   justify-content: center;
@@ -83,10 +103,6 @@ export const ValueBtns = styled.div`
   & > p {
     padding: 5px 0;
     margin: 0;
-  }
-
-  & > div {
-    display: flex;
   }
 
   & > div :not(:last-child) {
@@ -112,15 +128,3 @@ export const JobList = styled.div`
   padding-bottom: 20px;
 `;
 
-export const SearchBar = styled.input`
-  align-self: center;
-  background-color: #c4c4c430;
-  padding: 0 10px;
-  border-radius: 30px;
-  border: none;
-  outline: none;
-  box-shadow: 0px 0px 2px gray;
-  height: 65px;
-  flex: 2;
-  font-size: 1.5rem;
-`;
