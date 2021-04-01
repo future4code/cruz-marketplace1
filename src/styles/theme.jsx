@@ -18,7 +18,6 @@ const theme = createMuiTheme({
       '@global': {
         body: {
           position: 'relative',
-          overflow: 'hidden',
         }
       }
     }

@@ -8,27 +8,29 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
 const defaultValues = {
-    title: "",
-    description: "",
-    value: "",
-    paymentMethods: [],
-    dueDate: "",
-  }
+  title: "",
+  description: "",
+  value: 0,
+  paymentMethods: [],
+  dueDate: "",
+};
 
 export class RegistrationPage extends React.Component {
-  state = defaultValues
+  state = defaultValues;
 
   alertJob = {
-      open: false,
-      type: 'success',
-      message: 'Serviço cadastrado com sucesso!'
-  }
+    open: false,
+    type: "success",
+    message: "Serviço cadastrado com sucesso!",
+  };
 
   handleInput = (e) => {
     const { value, name } = e.target;
 
     if (name === "paymentMethods") {
       this.setState({ [name]: [value] });
+    } else if (name === "value") {
+      this.setState({ [name]: Number(value) });
     } else {
       this.setState({ [name]: value });
     }
@@ -42,36 +44,51 @@ export class RegistrationPage extends React.Component {
       this.state.dueDate &&
       this.state.paymentMethods
     ) {
-      createJob(this.state).then()
-      this.setState(defaultValues)
-      this.showAlert('success', 'Serviço cadastrado com sucesso!')
+      createJob(this.state).then();
+      this.setState(defaultValues);
+      this.showAlert("success", "Serviço cadastrado com sucesso!");
     } else {
-      this.showAlert('warning', 'Por favor preencha todos os campos!')
+      this.showAlert("warning", "Por favor preencha todos os campos!");
     }
   };
 
   showAlert = (type, message) => {
-      this.alertJob = {open: true, type, message}
-      this.forceUpdate()
-  }
+    this.alertJob = { open: true, type, message };
+    this.forceUpdate();
+  };
 
   closeAlert = () => {
-      this.alertJob.open = false
-      this.forceUpdate()
-  }
+    this.alertJob.open = false;
+    this.forceUpdate();
+  };
 
   render() {
     return (
       <Container>
-        {this.alertJob.open &&
-          <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={this.alertJob.open}  autoHideDuration={3000} onClose={this.closeAlert}>
-            <MuiAlert elevation={6} variant="filled" onClose={this.closeAlert} severity={this.alertJob.type}>
+        {this.alertJob.open && (
+          <Snackbar
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            open={this.alertJob.open}
+            autoHideDuration={3000}
+            onClose={this.closeAlert}
+          >
+            <MuiAlert
+              elevation={6}
+              variant="filled"
+              onClose={this.closeAlert}
+              severity={this.alertJob.type}
+            >
               {this.alertJob.message}
             </MuiAlert>
-          </Snackbar>}
+          </Snackbar>
+        )}
         <header>
           <img src={LogoName} />
-          <Button onClick={() => this.props.changePage('home')} variant="contained" color="secondary">
+          <Button
+            onClick={() => this.props.changePage("home")}
+            variant="contained"
+            color="secondary"
+          >
             Voltar
           </Button>
         </header>
