@@ -10,7 +10,7 @@ export default class RegistrationPage extends React.Component {
   state = {
     inputs: {
       title: '',
-      value: ''
+      value: 0
     }
   }
 
@@ -56,7 +56,7 @@ export default class RegistrationPage extends React.Component {
                     </Span>
 
                     <Span>
-                    <input required type="text"/>
+                    <input required type="number"/>
                     <label htmlFor="">Valor</label>
                     </Span>
                     
