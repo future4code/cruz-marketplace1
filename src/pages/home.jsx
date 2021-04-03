@@ -33,20 +33,31 @@ span{
 
 div{
   display:flex;
-  justify-content:center;
+ justify-content:center;
   align-items:center;
+  margin-right:60px;
+  
 }
 
 div > input{
-  width:70%;
-  margin-left:50px;
-  border-radius:20px;
+  width:350px;
+  border-radius:5px;
   padding:3%;
   border:none;
-  background-color:#B7B7B7;
+  background-color:lightgrey;
   font-size:20px;
+  margin-right:30px;
 
 }
+
+div > button{
+  color:#FFFFFF;
+  height:50px;
+  font-weight:bold;
+
+ 
+}
+
 
 `
 
@@ -93,11 +104,11 @@ console.log("nome do job:" + listJobs)
                 <div>
                   <input 
                   value={this.state.inputValue} 
-                  placeholder="Digite o que você precisa! ;)"
+                  placeholder="Digite o que você precisa"
                   onChange={this.onChangePesquisa}
                   />
                   <Button
-                variant="contained"
+                variant="outlined"
                 color="primary"
                 startIcon={<SearchIcon color="disabled"/>}
                 fontSize="large"
