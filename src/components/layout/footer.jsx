@@ -17,6 +17,7 @@ const FooterContainer = styled.div`
   align-self:flex-end;
   margin-top: 2%;
 
+
 `
 
 

@@ -181,6 +181,12 @@ const Container = styled.div`
   align-items: center;
   position: relative;
 
+  @media (max-width:375px) {
+  height:100%¨;
+   overflow:hidden;
+   
+  } 
+
   header {
     display: flex;
     justify-content: space-between;
@@ -188,9 +194,16 @@ const Container = styled.div`
     width: 100%;
     margin-top: 2%;
 
+    @media (max-width:375px) {
+     button{
+       margin-right:30px;
+     }
+    } 
+
     img {
       width: 170px;
     }
+
   }
 
   h1 {

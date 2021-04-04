@@ -19,6 +19,11 @@ const DetailsButton = styled(IconButton)`
   :hover {
     color: white;
   }
+  @media (max-width:375px){
+    height:25px;
+    width:25px;
+   
+
 `;
 
 const DeleteButton = styled(Button)`
@@ -45,18 +50,32 @@ const MainContainer = styled.div`
   h5 {
     color: #ebebeb;
   }
+
+ @media (max-width:375px){
+   width:200px;
+    height:80px;
+    margin-top:20px;
+  
 `;
 
 const Value = styled.span`
   color: #008d00;
   font-weight: bolder;
   font-size: 20px;
+ 
+  
+  
 `;
 
 const Box = styled.div`
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: 5px;
   width: 400px;
+
+  @media (max-width:375px){
+    width:250px;
+  }
+  
 `;
 
 const Title = styled.div`
@@ -66,6 +85,13 @@ const Title = styled.div`
     font-size: 23px;
     color: white;
   }
+
+  @media (max-width:375px){
+    h3{
+      font-size:1.0rem;
+    }
+  }
+
 `;
 
 const Details = styled.div`
