@@ -12,6 +12,8 @@ align-items:center;
 max-width: 1280px;
 margin: 0 auto;
 
+
+
 `
 const ButtonContainer = styled.div `
 display:flex;
@@ -19,10 +21,25 @@ margin-right: 25px;
  div{
      margin-right: 25px;
  }
+
+
+
+ @media (max-width:375px) {
+     margin-left: 10px;
+    button{
+        height: 40px;
+        font-size:10px;
+    }
+}
 `
 const Logotipo = styled.img`
 width:170px;
 margin-left: 35px;
+
+@media (max-width:375px) {
+width: 110px;
+    
+}
 
 `
 export default class Header extends React.Component{

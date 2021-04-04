@@ -5,7 +5,7 @@ import styled from "styled-components"
 import Header from "../components/layout/header"
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
-import {getAllJobs} from "utils/api"
+
 
 
 const HomeContainer = styled.div`
@@ -15,12 +15,20 @@ height:65vh;
 max-width: 1280px;
 margin: 0 auto;
 
+
 img{
   margin-top:10px;
   margin-left: 25px;
 }
-`
 
+
+@media (max-width:375px) {
+  overflow:hidden;
+  
+}
+
+
+`
 const ChamadaHome = styled.div`
 font-size: 45px;
 padding-left:25px;
@@ -54,15 +62,31 @@ div > button{
   color:#FFFFFF;
   height:50px;
   font-weight:bold;
-
- 
 }
 
 
-`
+@media (max-width:375px) {
+  
+  height:100%;
+  font-size:20px;
+  
+  
+  div>input{
+    height: 30px;
+    width:200px;
+    font-size:15px;
+  }
 
-
-
+  div > button{
+    height:30px;
+    width: 100px;
+    font-size: 12px;
+   
+  }
+  
+  
+}
+ `
 
 export class Home extends Component {
 
@@ -81,11 +105,6 @@ export class Home extends Component {
     this.props.changePage('professional', this.state.inputValue)
   }
 
-  componentDidMount() {
-    getAllJobs().then((result) => {
-      this.setState({ jobList: result.jobs});
-    });
-  }
 
   render(){
     console.log(this.state.inputValue);

@@ -6,6 +6,9 @@ export const PageContainer = styled.div`
   min-height: 100vh;
   max-width: 1280px;
   margin: 0 auto;
+  @media (max-width:375px) {
+    height:100%¨;
+    } 
 `;
 
 export const MainContent = styled.main`
@@ -27,11 +30,33 @@ export const Header = styled.header`
   & > :nth-child(3) {
     font-size: 1rem;
   }
+
+  @media (max-width:375px) {
+    & > img{
+
+      width:110px;
+      margin-top:15px;
+
+     button{
+       background-color:red;
+       
+      }
+
+    }
+     
+    } 
 `;
 
 export const SectionTitle = styled.h1`
   font-size: 2.75rem;
   color: #e0286799;
+  @media (max-width:375px) {
+      font-size:1.8rem;
+      margin-left:10px;
+
+    }
+
+
 `;
 
 export const SubHeader = styled.div`
@@ -47,6 +72,20 @@ export const SubHeader = styled.div`
       color: #e02867;
     }
   }
+
+  @media (max-width:375px) {
+    align-items:center;
+    justify-content:center;
+    
+   
+    h2{
+      font-size:1.5em
+      
+    }
+        
+    }
+
+  
 `;
 
 export const SearchBar = styled.input`
@@ -60,12 +99,32 @@ export const SearchBar = styled.input`
   height: 65px;
   flex: 2;
   font-size: 1.5rem;
+  @media (max-width:375px){
+    font-size:0.9rem;
+    height:30px;
+    border-radius:5px;
+    margin-right:15px;
+  
+    
+  }
+
 `;
 
 export const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-column-gap: 50px;
+
+  @media (max-width:375px){
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin-top: 10px;
+    height:400px;
+    width:250px;
+
+  
 `;
 
 export const Filter = styled.div`
@@ -80,6 +139,20 @@ export const Filter = styled.div`
   & > * {
     padding-top: 40px;
   }
+
+
+  @media (max-width:375px){
+    height:280px;
+    width:250px;
+    padding-top:2px;
+    padding-bottom:5px;
+    border:none;
+    margin-left:25px;
+    
+    
+    
+   
+   }
   `;
   
 export const OrderFilter = styled.div`
@@ -91,6 +164,14 @@ export const OrderFilter = styled.div`
   & > * {
     flex: 1;
   }
+  @media (max-width:375px){
+    font-size:0.8rem;
+    @media (max-width:375px){
+      font-size: 1.2rem;
+      height:50px;
+      
+    }
+   
 `;
 
 export const ValueBtns = styled.div`
@@ -108,6 +189,19 @@ export const ValueBtns = styled.div`
   & > div :not(:last-child) {
     margin-right: 10px;
   }
+
+  @media (max-width:375px){
+    
+  
+      font-size:0.8rem;
+      p{
+        font-size:0.8rem;
+      }
+      button{
+        font-size:0.6rem;
+        
+      }
+    
 `;
 
 export const MinMax = styled.div`
@@ -126,5 +220,10 @@ export const JobList = styled.div`
   justify-content: center;
   gap: 25px;
   padding-bottom: 20px;
+  @media (max-width:375px){
+   margin-left:20px;
+   
+  
+  }
 `;
 

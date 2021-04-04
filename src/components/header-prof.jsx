@@ -8,11 +8,14 @@ const useStyles = makeStyles(theme => ({
   header: {
     height: "100px",
     margin: "2% auto",
+
   },
   logo: {
     width: "170px",
     cursor: 'pointer',
+    
   },
+
 }))
 
 export const HeaderProf = props => {

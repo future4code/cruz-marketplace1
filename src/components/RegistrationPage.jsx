@@ -14,6 +14,7 @@ export default class RegistrationPage extends React.Component {
     }
   }
 
+
   criarJob = () => {
     createJob(this.state.input)
   }
@@ -72,6 +73,7 @@ export default class RegistrationPage extends React.Component {
 }
 
 const Container = styled.div`
+
 max-width: 1366px;
 height: 100vh;
 background-color: #f4f4f4;
@@ -89,7 +91,9 @@ header {
 
     img {
         width: 170px;
-    }
+
+     }
+
 }
 
 h1 {
@@ -164,6 +168,7 @@ form {
         }
     }
 }
+
 `
 const LogoNinjaImg = styled.img`
 position: absolute;
@@ -172,6 +177,8 @@ right: -130px;
 height: 600px;
 width: 500px;
 opacity: .2;
+
+
 `
 const Span = styled.span`
 position: relative;
